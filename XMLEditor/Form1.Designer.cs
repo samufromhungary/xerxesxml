@@ -162,6 +162,7 @@
             // 
             // validateToolStripMenuItem
             // 
+            this.validateToolStripMenuItem.Enabled = false;
             this.validateToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("validateToolStripMenuItem.Image")));
             this.validateToolStripMenuItem.Name = "validateToolStripMenuItem";
             this.validateToolStripMenuItem.Size = new System.Drawing.Size(180, 24);

@@ -29,26 +29,39 @@ namespace XMLEditor
 
         private void OpenToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            pictureBoxValid.Visible = false;
+            Reset();
             tabControl.Text = xmlname;
             textBoxReader.Text = Reader.Read(xmlname);
+            validateToolStripMenuItem.Enabled = true;
         }
 
         private void ValidateToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            bool isValid = Validator.Validate(xsdname, xmlname);
-            if (isValid)
+            if(textBoxReader.Text.Length != 0)
             {
-                infoTextBox.Text = "Validation was successful";
-                pictureBoxValid.BackColor = System.Drawing.Color.Lime;
-                pictureBoxValid.Visible = true;
+
+                bool isValid = Validator.Validate(xsdname, xmlname);
+                if (isValid)
+                {
+                    infoTextBox.Text = "Validation was successful";
+                    pictureBoxValid.BackColor = System.Drawing.Color.Lime;
+                    pictureBoxValid.Visible = true;
+                }
+                else
+                {
+                    infoTextBox.Text = "Validation was unsuccessful";
+                    pictureBoxValid.BackColor = System.Drawing.Color.Red;
+                    pictureBoxValid.Visible = true;
+                }
             }
-            else
-            {
-                infoTextBox.Text = "Validation was unsuccessful";
-                pictureBoxValid.BackColor = System.Drawing.Color.Red;
-                pictureBoxValid.Visible = true;
-            }
+        }
+
+        void Reset()
+        {
+            tabControl.Text = "";
+            textBoxReader.Text = "";
+            pictureBoxValid.Visible = false;
+            validateToolStripMenuItem.Enabled = false;
         }
     }
 }
