@@ -69,7 +69,9 @@ namespace XMLEditor
             int index = textBoxReader.SelectionStart;
             int line = textBoxReader.GetLineFromCharIndex(index);
             statusLabel.Visible = true;
-            statusLabel.Text = "Line " + line.ToString();
+            int nums = textBoxReader.Lines.Length;
+            statusLabel.Text = String.Format("Lines: {0} (Current: {1}) ", nums.ToString(), line.ToString());
+
         }
     }
 }
