@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Input;
 
 namespace XMLEditor
 {
@@ -19,6 +20,7 @@ namespace XMLEditor
         String xmlname;
         String xsdname;
         String msg;
+        bool isTrue = true;
         public xmleditor()
         {
             InitializeComponent();
@@ -27,24 +29,29 @@ namespace XMLEditor
 
         private void Xmleditor_Load(object sender, EventArgs e)
         {
-            
+
         }
 
-        private void OpenToolStripMenuItem_Click(object sender, EventArgs e)
+        public void OpenFile()
         {
             xmlname = Explorer.SelectedFilePathXml();
             Reset();
             textBoxReader.Text = Reader.Read(xmlname);
             tabControl.Text = xmlname;
             validateToolStripMenuItem.Enabled = true;
+
+        }
+        private void OpenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFile();
         }
 
         private void ValidateToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if(textBoxReader.Text.Length != 0)
+            if (textBoxReader.Text.Length != 0)
             {
                 xsdname = Explorer.SelectedFilePathXsd();
-                bool ? isValid = Validator.Validate(xsdname, xmlname);
+                bool? isValid = Validator.Validate(xsdname, xmlname);
                 if (isValid == true)
                 {
                     msg = "Validation was successful";
@@ -52,7 +59,7 @@ namespace XMLEditor
                     pictureBoxValid.BackColor = System.Drawing.Color.Lime;
                     pictureBoxValid.Visible = true;
                 }
-                else if(isValid == false)
+                else if (isValid == false)
                 {
                     msg = "Validation was unsuccessful";
                     infoTextBox.Text += DateFormat.AppendMessage(msg);
@@ -89,6 +96,14 @@ namespace XMLEditor
         {
             About about = new About();
             about.ShowDialog();
+        }
+
+        private void TextBoxReader_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode == Keys.O)
+            {
+                OpenFile();
+            }
         }
     }
 }

@@ -150,6 +150,7 @@
             this.textBoxReader.TabIndex = 1;
             this.textBoxReader.Text = "";
             this.textBoxReader.SelectionChanged += new System.EventHandler(this.TextBoxReader_SelectionChanged);
+            this.textBoxReader.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBoxReader_KeyDown);
             // 
             // tabControlEditor
             // 
