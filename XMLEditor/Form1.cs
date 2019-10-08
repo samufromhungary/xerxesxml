@@ -14,7 +14,8 @@ namespace XMLEditor
     {
         Reader Reader = new Reader();
         Validator Validator = new Validator();
-        String xmlname = "testfile.xml";
+        Explorer Explorer = new Explorer();
+        String xmlname;
         String xsdname = "testfile.xsd";
         public xmleditor()
         {
@@ -29,6 +30,7 @@ namespace XMLEditor
 
         private void OpenToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            xmlname = Explorer.SelectedFilePath();
             Reset();
             tabControl.Text = xmlname;
             textBoxReader.Text = Reader.Read(xmlname);
