@@ -15,8 +15,10 @@ namespace XMLEditor
         Reader Reader = new Reader();
         Validator Validator = new Validator();
         Explorer Explorer = new Explorer();
+        DateFormat DateFormat = new DateFormat();
         String xmlname;
-        String xsdname = "testfile.xsd";
+        String xsdname;
+        String msg;
         public xmleditor()
         {
             InitializeComponent();
@@ -30,10 +32,10 @@ namespace XMLEditor
 
         private void OpenToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            xmlname = Explorer.SelectedFilePath();
+            xmlname = Explorer.SelectedFilePathXml();
             Reset();
-            tabControl.Text = xmlname;
             textBoxReader.Text = Reader.Read(xmlname);
+            tabControl.Text = xmlname;
             validateToolStripMenuItem.Enabled = true;
         }
 
@@ -41,19 +43,26 @@ namespace XMLEditor
         {
             if(textBoxReader.Text.Length != 0)
             {
-
-                bool isValid = Validator.Validate(xsdname, xmlname);
-                if (isValid)
+                xsdname = Explorer.SelectedFilePathXsd();
+                bool ? isValid = Validator.Validate(xsdname, xmlname);
+                if (isValid == true)
                 {
-                    infoTextBox.Text = "Validation was successful";
+                    msg = "Validation was successful";
+                    infoTextBox.Text += DateFormat.AppendMessage(msg);
                     pictureBoxValid.BackColor = System.Drawing.Color.Lime;
+                    pictureBoxValid.Visible = true;
+                }
+                else if(isValid == false)
+                {
+                    msg = "Validation was unsuccessful";
+                    infoTextBox.Text += DateFormat.AppendMessage(msg);
+                    pictureBoxValid.BackColor = System.Drawing.Color.Red;
                     pictureBoxValid.Visible = true;
                 }
                 else
                 {
-                    infoTextBox.Text = "Validation was unsuccessful";
-                    pictureBoxValid.BackColor = System.Drawing.Color.Red;
-                    pictureBoxValid.Visible = true;
+                    msg = "File extension error";
+                    infoTextBox.Text += DateFormat.AppendMessage(msg);
                 }
             }
         }

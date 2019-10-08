@@ -14,13 +14,30 @@ namespace XMLEditor
 
         }
 
-        public String SelectedFilePath()
+        public String SelectedFilePathXml()
         {
             String path = "";
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
                 openFileDialog.InitialDirectory = "c:\\";
-                openFileDialog.Filter = "xml files (*.xml)|*.xml|All files (*.*)|*.*";
+                openFileDialog.Filter = "xml files (*.xml)|*.xml";
+                openFileDialog.FilterIndex = 1;
+                openFileDialog.RestoreDirectory = true;
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    path = openFileDialog.FileName;
+                }
+            }
+            return path;
+        }
+        public String SelectedFilePathXsd()
+        {
+            String path = "";
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.InitialDirectory = "c:\\";
+                openFileDialog.Filter = "xsd files (*.xsd)|*.xsd";
                 openFileDialog.FilterIndex = 1;
                 openFileDialog.RestoreDirectory = true;
 

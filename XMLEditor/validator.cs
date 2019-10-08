@@ -14,20 +14,37 @@ namespace XMLEditor
         {
 
         }
-        public bool Validate(String xsd, String xml)
+        public bool ? Validate(String xsd, String xml)
         {
-            bool isValid = false;
-            XmlSchemaSet schemas = new XmlSchemaSet();
-            schemas.Add("", xsd);
-            XDocument doc = XDocument.Load(xml);
-            bool errors = false;
-            doc.Validate(schemas, (o, e) =>
+            try
             {
-                errors = true;
-            });
-            isValid = errors ? false : true;
+                if (xsd.EndsWith(".xsd") && xml.EndsWith("xml"))
+                {
+                    bool isValid = false;
+                    XmlSchemaSet schemas = new XmlSchemaSet();
+                    schemas.Add("", xsd);
+                    XDocument doc = XDocument.Load(xml);
+                    bool errors = false;
+                    doc.Validate(schemas, (o, e) =>
+                    {
+                        errors = true;
+                    });
+                    isValid = errors ? false : true;
 
-            return isValid;
+                    return isValid;
+                }
+                else
+                {
+                    return null;
+                }
+
+            }
+            catch(Exception e)
+            {
+                return null;
+            }
+
+
         }
     }
 }

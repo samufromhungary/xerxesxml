@@ -5,6 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using System.IO;
+using System.Windows.Forms;
 
 namespace XMLEditor
 {
@@ -16,14 +18,28 @@ namespace XMLEditor
         }
         public String Read(String xml)
         {
-            List<String> content = new List<String>();
-            XmlDocument doc = new XmlDocument();
-            doc.PreserveWhitespace = true;
-            doc.Load(xml);
-            string xmlcontents = doc.InnerXml;
-            content.Add(xmlcontents);
+            try
+            {
+                if (xml.EndsWith(".xml"))
+                {
+                    List<String> content = new List<String>();
+                    XmlDocument doc = new XmlDocument();
+                    doc.PreserveWhitespace = true;
+                    doc.Load(xml);
+                    string xmlcontents = doc.InnerXml;
+                    content.Add(xmlcontents);
+                    return xmlcontents;
+                }
+                else
+                {
+                    return null;
+                }
 
-            return xmlcontents;
+            }catch(Exception e)
+            {
+                return null;
+            }
+
         }
     }
 }
