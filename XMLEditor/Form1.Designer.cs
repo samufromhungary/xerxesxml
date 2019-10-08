@@ -34,6 +34,7 @@
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.validateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl = new System.Windows.Forms.TabPage();
@@ -41,7 +42,7 @@
             this.textBoxReader = new System.Windows.Forms.RichTextBox();
             this.tabControlEditor = new System.Windows.Forms.TabControl();
             this.infoTextBox = new System.Windows.Forms.RichTextBox();
-            this.validateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.statusLabel = new System.Windows.Forms.Label();
             this.menuStrip.SuspendLayout();
             this.tabControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxValid)).BeginInit();
@@ -77,14 +78,14 @@
             // 
             this.newToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("newToolStripMenuItem.Image")));
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(127, 24);
             this.newToolStripMenuItem.Text = "New";
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("openToolStripMenuItem.Image")));
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(127, 24);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.OpenToolStripMenuItem_Click);
             // 
@@ -92,8 +93,17 @@
             // 
             this.saveToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("saveToolStripMenuItem.Image")));
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(127, 24);
             this.saveToolStripMenuItem.Text = "Save";
+            // 
+            // validateToolStripMenuItem
+            // 
+            this.validateToolStripMenuItem.Enabled = false;
+            this.validateToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("validateToolStripMenuItem.Image")));
+            this.validateToolStripMenuItem.Name = "validateToolStripMenuItem";
+            this.validateToolStripMenuItem.Size = new System.Drawing.Size(127, 24);
+            this.validateToolStripMenuItem.Text = "Validate";
+            this.validateToolStripMenuItem.Click += new System.EventHandler(this.ValidateToolStripMenuItem_Click);
             // 
             // settingsToolStripMenuItem
             // 
@@ -138,6 +148,7 @@
             this.textBoxReader.Size = new System.Drawing.Size(1251, 420);
             this.textBoxReader.TabIndex = 1;
             this.textBoxReader.Text = "";
+            this.textBoxReader.SelectionChanged += new System.EventHandler(this.TextBoxReader_SelectionChanged);
             // 
             // tabControlEditor
             // 
@@ -160,14 +171,15 @@
             this.infoTextBox.TabIndex = 0;
             this.infoTextBox.Text = "";
             // 
-            // validateToolStripMenuItem
+            // statusLabel
             // 
-            this.validateToolStripMenuItem.Enabled = false;
-            this.validateToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("validateToolStripMenuItem.Image")));
-            this.validateToolStripMenuItem.Name = "validateToolStripMenuItem";
-            this.validateToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
-            this.validateToolStripMenuItem.Text = "Validate";
-            this.validateToolStripMenuItem.Click += new System.EventHandler(this.ValidateToolStripMenuItem_Click);
+            this.statusLabel.AutoSize = true;
+            this.statusLabel.Location = new System.Drawing.Point(16, 517);
+            this.statusLabel.Name = "statusLabel";
+            this.statusLabel.Size = new System.Drawing.Size(30, 16);
+            this.statusLabel.TabIndex = 3;
+            this.statusLabel.Text = "Line";
+            this.statusLabel.Visible = false;
             // 
             // xmleditor
             // 
@@ -175,7 +187,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1289, 799);
+            this.ClientSize = new System.Drawing.Size(1289, 749);
+            this.Controls.Add(this.statusLabel);
             this.Controls.Add(this.infoTextBox);
             this.Controls.Add(this.tabControlEditor);
             this.Controls.Add(this.menuStrip);
@@ -213,6 +226,7 @@
         private System.Windows.Forms.PictureBox pictureBoxValid;
         private System.Windows.Forms.RichTextBox textBoxReader;
         private System.Windows.Forms.ToolStripMenuItem validateToolStripMenuItem;
+        private System.Windows.Forms.Label statusLabel;
     }
 }
 

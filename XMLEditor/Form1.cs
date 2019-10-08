@@ -63,5 +63,13 @@ namespace XMLEditor
             pictureBoxValid.Visible = false;
             validateToolStripMenuItem.Enabled = false;
         }
+
+        private void TextBoxReader_SelectionChanged(object sender, EventArgs e)
+        {
+            int index = textBoxReader.SelectionStart;
+            int line = textBoxReader.GetLineFromCharIndex(index);
+            statusLabel.Visible = true;
+            statusLabel.Text = "Line " + line.ToString();
+        }
     }
 }
