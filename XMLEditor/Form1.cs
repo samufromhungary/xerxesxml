@@ -73,5 +73,11 @@ namespace XMLEditor
             statusLabel.Text = String.Format("Lines: {0} (Current: {1}) ", nums.ToString(), line.ToString());
 
         }
+
+        private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            About about = new About();
+            about.ShowDialog();
+        }
     }
 }
