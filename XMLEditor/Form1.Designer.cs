@@ -43,7 +43,11 @@
             this.tabControlEditor = new System.Windows.Forms.TabControl();
             this.infoTextBox = new System.Windows.Forms.RichTextBox();
             this.statusLabel = new System.Windows.Forms.Label();
+<<<<<<< HEAD
             this.panelBox = new System.Windows.Forms.Panel();
+=======
+            this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+>>>>>>> 408b9ce3afb48544a1e78e885f98fef2ff93268a
             this.menuStrip.SuspendLayout();
             this.tabControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxValid)).BeginInit();
@@ -75,6 +79,7 @@
             this.newToolStripMenuItem,
             this.openToolStripMenuItem,
             this.saveToolStripMenuItem,
+            this.saveAsToolStripMenuItem,
             this.validateToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(41, 23);
@@ -97,10 +102,12 @@
             // 
             // saveToolStripMenuItem
             // 
+            this.saveToolStripMenuItem.Enabled = false;
             this.saveToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("saveToolStripMenuItem.Image")));
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
             this.saveToolStripMenuItem.Text = "Save";
+            this.saveToolStripMenuItem.Click += new System.EventHandler(this.SaveToolStripMenuItem_Click);
             // 
             // validateToolStripMenuItem
             // 
@@ -203,6 +210,7 @@
             this.statusLabel.Text = "Line";
             this.statusLabel.Visible = false;
             // 
+<<<<<<< HEAD
             // panelBox
             // 
             this.panelBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -217,6 +225,15 @@
             this.panelBox.Name = "panelBox";
             this.panelBox.Size = new System.Drawing.Size(1272, 724);
             this.panelBox.TabIndex = 4;
+=======
+            // saveAsToolStripMenuItem
+            // 
+            this.saveAsToolStripMenuItem.Enabled = false;
+            this.saveAsToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("saveAsToolStripMenuItem.Image")));
+            this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.saveAsToolStripMenuItem.Text = "Save As..";
+>>>>>>> 408b9ce3afb48544a1e78e885f98fef2ff93268a
             // 
             // xmleditor
             // 
@@ -261,7 +278,11 @@
         private System.Windows.Forms.RichTextBox textBoxReader;
         private System.Windows.Forms.ToolStripMenuItem validateToolStripMenuItem;
         private System.Windows.Forms.Label statusLabel;
+<<<<<<< HEAD
         private System.Windows.Forms.Panel panelBox;
+=======
+        private System.Windows.Forms.ToolStripMenuItem saveAsToolStripMenuItem;
+>>>>>>> 408b9ce3afb48544a1e78e885f98fef2ff93268a
     }
 }
 
