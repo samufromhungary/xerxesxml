@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Xml;
 using System.IO;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace XMLEditor
 {
@@ -40,6 +41,13 @@ namespace XMLEditor
                 return null;
             }
 
+        }
+
+        public void Save(String content, String xml)
+        {
+            XmlDocument doc = new XmlDocument();
+            doc.LoadXml(content);
+            doc.Save(xml);
         }
     }
 }

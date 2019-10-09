@@ -105,5 +105,10 @@ namespace XMLEditor
                 OpenFile();
             }
         }
+
+        private void SaveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Reader.Save(textBoxReader.Text, xmlname);
+        }
     }
 }
