@@ -109,10 +109,10 @@ namespace XMLEditor
             {
                 OpenFile();
             }
-            //if (e.Control && e.KeyCode == Keys.S)
-            //{
-            //    SaveFile();
-            //}
+            if (e.Control && e.KeyCode == Keys.S)
+            {
+                Reader.Save(textBoxReader.Text,xmlname);
+            }
             if (e.Control && e.KeyCode == Keys.V)
             {
                 ValidateFile();

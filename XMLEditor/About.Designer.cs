@@ -59,7 +59,7 @@
             this.Controls.Add(this.titleLabel);
             this.MinimumSize = new System.Drawing.Size(100, 200);
             this.Name = "About";
-            this.Text = "Form2";
+            this.Text = "About";
             this.ResumeLayout(false);
             this.PerformLayout();
 
