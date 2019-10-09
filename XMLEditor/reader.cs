@@ -17,7 +17,7 @@ namespace XMLEditor
         {
 
         }
-        public String Read(String xml)
+        public String Read(String xml,RichTextBox richTextBox)
         {
             try
             {
@@ -38,16 +38,23 @@ namespace XMLEditor
 
             }catch(Exception e)
             {
-                return null;
+                return richTextBox.Text = e.Message;
             }
 
         }
 
-        public void Save(String content, String xml)
+        public void Save(String content, String xml,RichTextBox richTextBox)
         {
-            XmlDocument doc = new XmlDocument();
-            doc.LoadXml(content);
-            doc.Save(xml);
+            try
+            {
+                XmlDocument doc = new XmlDocument();
+                doc.LoadXml(content);
+                doc.Save(xml);
+            }
+            catch (XmlException e)
+            {
+                richTextBox.Text = e.Message;
+            }
         }
 
     }

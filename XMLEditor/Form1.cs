@@ -35,7 +35,7 @@ namespace XMLEditor
         {
             xmlname = Explorer.SelectedFilePathXml();
             Reset();
-            textBoxReader.Text = Reader.Read(xmlname);
+            textBoxReader.Text = Reader.Read(xmlname,infoTextBox);
             tabControl.Text = xmlname;
             validateToolStripMenuItem.Enabled = true;
             saveToolStripMenuItem.Enabled = true;
@@ -93,7 +93,7 @@ namespace XMLEditor
             int line = textBoxReader.GetLineFromCharIndex(index);
             statusLabel.Visible = true;
             int nums = textBoxReader.Lines.Length;
-            statusLabel.Text = String.Format("Lines: {0} (Current: {1}) ", nums.ToString(), line.ToString());
+            statusLabel.Text = String.Format("Lines: {0} (Current: {1}) ", nums.ToString(), (line + 1).ToString());
 
         }
 
@@ -111,7 +111,7 @@ namespace XMLEditor
             }
             if (e.Control && e.KeyCode == Keys.S)
             {
-                Reader.Save(textBoxReader.Text,xmlname);
+                Reader.Save(textBoxReader.Text,xmlname,infoTextBox);
             }
             if (e.Control && e.KeyCode == Keys.V)
             {
@@ -125,7 +125,16 @@ namespace XMLEditor
 
         private void SaveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Reader.Save(textBoxReader.Text, xmlname);
+            Reader.Save(textBoxReader.Text, xmlname,infoTextBox);
+        }
+
+        private void TabControlEditor_DoubleClick(object sender, EventArgs e)
+        {
+            TabPage tabPage = new TabPage("Page");
+            tabControlEditor.TabPages.Add(tabPage);
+            RichTextBox richTextBox = new RichTextBox();
+            richTextBox.Dock = DockStyle.Fill;
+            tabPage.Controls.Add(richTextBox);
         }
     }
 }
