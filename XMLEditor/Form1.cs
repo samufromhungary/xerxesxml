@@ -20,7 +20,6 @@ namespace XMLEditor
         String xmlname;
         String xsdname;
         String msg;
-        bool isTrue = true;
         public xmleditor()
         {
             InitializeComponent();
@@ -47,6 +46,10 @@ namespace XMLEditor
         }
 
         private void ValidateToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ValidateFile();
+        }
+        void ValidateFile()
         {
             if (textBoxReader.Text.Length != 0)
             {
@@ -104,6 +107,18 @@ namespace XMLEditor
             {
                 OpenFile();
             }
+            //if (e.Control && e.KeyCode == Keys.S)
+            //{
+            //    SaveFile();
+            //}
+            if (e.Control && e.KeyCode == Keys.V)
+            {
+                ValidateFile();
+            }
+            //if (e.Control && e.KeyCode == Keys.N)
+            //{
+            //    NewFile();
+            //}
         }
     }
 }

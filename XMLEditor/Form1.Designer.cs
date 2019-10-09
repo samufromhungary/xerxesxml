@@ -43,23 +43,29 @@
             this.tabControlEditor = new System.Windows.Forms.TabControl();
             this.infoTextBox = new System.Windows.Forms.RichTextBox();
             this.statusLabel = new System.Windows.Forms.Label();
+            this.panelBox = new System.Windows.Forms.Panel();
             this.menuStrip.SuspendLayout();
             this.tabControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxValid)).BeginInit();
             this.tabControlEditor.SuspendLayout();
+            this.panelBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip
             // 
+            this.menuStrip.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.menuStrip.BackColor = System.Drawing.Color.Transparent;
-            this.menuStrip.Font = new System.Drawing.Font("Microsoft YaHei", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.menuStrip.Dock = System.Windows.Forms.DockStyle.None;
+            this.menuStrip.Font = new System.Drawing.Font("Microsoft YaHei", 9.75F);
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.settingsToolStripMenuItem,
             this.aboutToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(1289, 27);
+            this.menuStrip.Size = new System.Drawing.Size(179, 27);
             this.menuStrip.TabIndex = 0;
             this.menuStrip.Text = "menuStrip";
             // 
@@ -78,14 +84,14 @@
             // 
             this.newToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("newToolStripMenuItem.Image")));
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(127, 24);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
             this.newToolStripMenuItem.Text = "New";
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("openToolStripMenuItem.Image")));
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(127, 24);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.OpenToolStripMenuItem_Click);
             // 
@@ -93,7 +99,7 @@
             // 
             this.saveToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("saveToolStripMenuItem.Image")));
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(127, 24);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
             this.saveToolStripMenuItem.Text = "Save";
             // 
             // validateToolStripMenuItem
@@ -101,7 +107,7 @@
             this.validateToolStripMenuItem.Enabled = false;
             this.validateToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("validateToolStripMenuItem.Image")));
             this.validateToolStripMenuItem.Name = "validateToolStripMenuItem";
-            this.validateToolStripMenuItem.Size = new System.Drawing.Size(127, 24);
+            this.validateToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
             this.validateToolStripMenuItem.Text = "Validate";
             this.validateToolStripMenuItem.Click += new System.EventHandler(this.ValidateToolStripMenuItem_Click);
             // 
@@ -125,13 +131,16 @@
             this.tabControl.Location = new System.Drawing.Point(4, 25);
             this.tabControl.Name = "tabControl";
             this.tabControl.Padding = new System.Windows.Forms.Padding(3);
-            this.tabControl.Size = new System.Drawing.Size(1257, 426);
+            this.tabControl.Size = new System.Drawing.Size(1250, 376);
             this.tabControl.TabIndex = 0;
             this.tabControl.Text = "Page 1";
             this.tabControl.UseVisualStyleBackColor = true;
             // 
             // pictureBoxValid
             // 
+            this.pictureBoxValid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBoxValid.BackColor = System.Drawing.Color.Lime;
             this.pictureBoxValid.Location = new System.Drawing.Point(1215, 6);
             this.pictureBoxValid.Name = "pictureBoxValid";
@@ -142,11 +151,13 @@
             // 
             // textBoxReader
             // 
+            this.textBoxReader.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxReader.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.textBoxReader.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBoxReader.Location = new System.Drawing.Point(3, 3);
             this.textBoxReader.Name = "textBoxReader";
-            this.textBoxReader.Size = new System.Drawing.Size(1251, 420);
+            this.textBoxReader.Size = new System.Drawing.Size(1244, 514);
             this.textBoxReader.TabIndex = 1;
             this.textBoxReader.Text = "";
             this.textBoxReader.SelectionChanged += new System.EventHandler(this.TextBoxReader_SelectionChanged);
@@ -154,11 +165,15 @@
             // 
             // tabControlEditor
             // 
+            this.tabControlEditor.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControlEditor.Controls.Add(this.tabControl);
-            this.tabControlEditor.Location = new System.Drawing.Point(12, 59);
+            this.tabControlEditor.Location = new System.Drawing.Point(7, 30);
+            this.tabControlEditor.MinimumSize = new System.Drawing.Size(400, 200);
             this.tabControlEditor.Name = "tabControlEditor";
             this.tabControlEditor.SelectedIndex = 0;
-            this.tabControlEditor.Size = new System.Drawing.Size(1265, 455);
+            this.tabControlEditor.Size = new System.Drawing.Size(1258, 405);
             this.tabControlEditor.TabIndex = 1;
             // 
             // infoTextBox
@@ -166,39 +181,55 @@
             this.infoTextBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.infoTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.infoTextBox.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.infoTextBox.Location = new System.Drawing.Point(16, 547);
+            this.infoTextBox.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.infoTextBox.Location = new System.Drawing.Point(0, 486);
+            this.infoTextBox.MinimumSize = new System.Drawing.Size(400, 100);
             this.infoTextBox.Name = "infoTextBox";
             this.infoTextBox.ReadOnly = true;
-            this.infoTextBox.Size = new System.Drawing.Size(1257, 216);
+            this.infoTextBox.Size = new System.Drawing.Size(1272, 238);
             this.infoTextBox.TabIndex = 0;
             this.infoTextBox.Text = "";
             // 
             // statusLabel
             // 
+            this.statusLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.statusLabel.AutoSize = true;
-            this.statusLabel.Location = new System.Drawing.Point(1088, 517);
+            this.statusLabel.Location = new System.Drawing.Point(989, 438);
             this.statusLabel.Name = "statusLabel";
             this.statusLabel.Size = new System.Drawing.Size(30, 16);
             this.statusLabel.TabIndex = 3;
             this.statusLabel.Text = "Line";
             this.statusLabel.Visible = false;
             // 
+            // panelBox
+            // 
+            this.panelBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelBox.Controls.Add(this.menuStrip);
+            this.panelBox.Controls.Add(this.tabControlEditor);
+            this.panelBox.Controls.Add(this.statusLabel);
+            this.panelBox.Controls.Add(this.infoTextBox);
+            this.panelBox.Location = new System.Drawing.Point(5, 3);
+            this.panelBox.MinimumSize = new System.Drawing.Size(600, 500);
+            this.panelBox.Name = "panelBox";
+            this.panelBox.Size = new System.Drawing.Size(1272, 724);
+            this.panelBox.TabIndex = 4;
+            // 
             // xmleditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1289, 749);
-            this.Controls.Add(this.statusLabel);
-            this.Controls.Add(this.infoTextBox);
-            this.Controls.Add(this.tabControlEditor);
-            this.Controls.Add(this.menuStrip);
-            this.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.HelpButton = true;
+            this.ClientSize = new System.Drawing.Size(1289, 739);
+            this.Controls.Add(this.panelBox);
+            this.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.MinimumSize = new System.Drawing.Size(600, 500);
             this.Name = "xmleditor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Xerxes";
@@ -208,8 +239,9 @@
             this.tabControl.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxValid)).EndInit();
             this.tabControlEditor.ResumeLayout(false);
+            this.panelBox.ResumeLayout(false);
+            this.panelBox.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -229,6 +261,7 @@
         private System.Windows.Forms.RichTextBox textBoxReader;
         private System.Windows.Forms.ToolStripMenuItem validateToolStripMenuItem;
         private System.Windows.Forms.Label statusLabel;
+        private System.Windows.Forms.Panel panelBox;
     }
 }
 
