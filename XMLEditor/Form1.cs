@@ -39,6 +39,7 @@ namespace XMLEditor
             textBoxReader.Text = Reader.Read(xmlname);
             tabControl.Text = xmlname;
             validateToolStripMenuItem.Enabled = true;
+            saveToolStripMenuItem.Enabled = true;
 
         }
         private void OpenToolStripMenuItem_Click(object sender, EventArgs e)
@@ -80,6 +81,7 @@ namespace XMLEditor
             textBoxReader.Text = "";
             pictureBoxValid.Visible = false;
             validateToolStripMenuItem.Enabled = false;
+            saveToolStripMenuItem.Enabled = false;
         }
 
         private void TextBoxReader_SelectionChanged(object sender, EventArgs e)

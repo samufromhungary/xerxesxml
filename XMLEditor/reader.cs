@@ -49,5 +49,6 @@ namespace XMLEditor
             doc.LoadXml(content);
             doc.Save(xml);
         }
+
     }
 }
