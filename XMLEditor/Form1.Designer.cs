@@ -184,7 +184,7 @@
             this.textBoxReader.Text = "";
             this.textBoxReader.SelectionChanged += new System.EventHandler(this.TextBoxReader_SelectionChanged);
             this.textBoxReader.TextChanged += new System.EventHandler(this.TextBoxReader_TextChanged);
-            this.textBoxReader.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBoxReader_KeyDown);
+            this.textBoxReader.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TextBoxReader_KeyUp);
             // 
             // tabControlEditor
             // 

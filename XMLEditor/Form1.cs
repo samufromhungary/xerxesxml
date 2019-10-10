@@ -23,7 +23,7 @@ namespace XMLEditor
         String xmlname;
         String xsdname;
         String msg;
-        String savedxsd;
+        String savedxsd = "";
         float normal = 8.25F;
         float actual = 8.25F;
         bool autosave = false;
@@ -63,8 +63,19 @@ namespace XMLEditor
         {
             if (textBoxReader.Text.Length != 0)
             {
-                xsdname = Explorer.SelectedFilePathXsd();
-                bool? isValid = Validator.Validate(xsdname, xmlname);
+                bool? isValid = false;
+                if (savedxsd.Equals(""))
+                {
+                    xsdname = Explorer.SelectedFilePathXsd();
+                    savedxsd = xsdname;
+                    isValid = Validator.Validate(xsdname, xmlname);
+                }
+                else if(!savedxsd.Equals(""))
+                {
+                    isValid = Validator.Validate(savedxsd, xmlname);
+                }
+
+                
                 if (isValid == true)
                 {
                     msg = "Validation was successful";
@@ -81,7 +92,7 @@ namespace XMLEditor
                 }
                 else
                 {
-                    msg = "File extension error";
+                    msg = "No XSD found";
                     infoTextBox.Text += DateFormat.AppendMessage(msg);
                 }
             }
@@ -112,7 +123,7 @@ namespace XMLEditor
             about.ShowDialog();
         }
 
-        private void TextBoxReader_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
+        private void TextBoxReader_KeyUp(object sender, System.Windows.Forms.KeyEventArgs e)
         {
             if (e.Control && e.KeyCode == Keys.O)
             {
@@ -124,6 +135,12 @@ namespace XMLEditor
             }
             if (e.Control && e.KeyCode == Keys.V)
             {
+                ValidateFile();
+            }
+            if (e.Control && e.KeyCode == Keys.B)
+            {
+                savedxsd = "";
+                pictureBoxValid.Visible = false;
                 ValidateFile();
             }
         }
