@@ -17,6 +17,8 @@ namespace XMLEditor
         Validator Validator = new Validator();
         Explorer Explorer = new Explorer();
         DateFormat DateFormat = new DateFormat();
+        RichTextBox richTextBox = new RichTextBox();
+        TabPage tabPage = new TabPage("Page");
         String xmlname;
         String xsdname;
         String msg;
@@ -35,7 +37,9 @@ namespace XMLEditor
         {
             xmlname = Explorer.SelectedFilePathXml();
             Reset();
-            textBoxReader.Text = Reader.Read(xmlname,infoTextBox);
+            //var selectedTab = tabControlEditor.SelectedTab;
+            //selectedTab.Controls.Add(richTextBox);
+            textBoxReader.Text = Reader.Read(xmlname, infoTextBox);
             tabControl.Text = xmlname;
             validateToolStripMenuItem.Enabled = true;
             saveToolStripMenuItem.Enabled = true;
@@ -130,11 +134,14 @@ namespace XMLEditor
 
         private void TabControlEditor_DoubleClick(object sender, EventArgs e)
         {
-            TabPage tabPage = new TabPage("Page");
             tabControlEditor.TabPages.Add(tabPage);
-            RichTextBox richTextBox = new RichTextBox();
             richTextBox.Dock = DockStyle.Fill;
-            tabPage.Controls.Add(richTextBox);
+            tabPage.Controls.Add(new RichTextBox());
+        }
+
+        private void TextBoxReader_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

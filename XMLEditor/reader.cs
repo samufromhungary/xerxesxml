@@ -13,6 +13,8 @@ namespace XMLEditor
 {
     public class Reader
     {
+
+        DateFormat DateFormat = new DateFormat();
         public Reader()
         {
 
@@ -38,7 +40,7 @@ namespace XMLEditor
 
             }catch(Exception e)
             {
-                return richTextBox.Text = e.Message;
+                return richTextBox.Text += DateFormat.AppendMessage(e.Message);
             }
 
         }
@@ -53,7 +55,7 @@ namespace XMLEditor
             }
             catch (XmlException e)
             {
-                richTextBox.Text = e.Message;
+                richTextBox.Text += DateFormat.AppendMessage(e.Message);
             }
         }
 

@@ -154,9 +154,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBoxValid.BackColor = System.Drawing.Color.Lime;
-            this.pictureBoxValid.Location = new System.Drawing.Point(1204, 6);
+            this.pictureBoxValid.Location = new System.Drawing.Point(1217, 6);
             this.pictureBoxValid.Name = "pictureBoxValid";
-            this.pictureBoxValid.Size = new System.Drawing.Size(26, 33);
+            this.pictureBoxValid.Size = new System.Drawing.Size(13, 12);
             this.pictureBoxValid.TabIndex = 0;
             this.pictureBoxValid.TabStop = false;
             this.pictureBoxValid.Visible = false;
@@ -174,6 +174,7 @@
             this.textBoxReader.TabIndex = 1;
             this.textBoxReader.Text = "";
             this.textBoxReader.SelectionChanged += new System.EventHandler(this.TextBoxReader_SelectionChanged);
+            this.textBoxReader.TextChanged += new System.EventHandler(this.TextBoxReader_TextChanged);
             this.textBoxReader.KeyDown += new System.Windows.Forms.KeyEventHandler(this.TextBoxReader_KeyDown);
             // 
             // tabControlEditor
