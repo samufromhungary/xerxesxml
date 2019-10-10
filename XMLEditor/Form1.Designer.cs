@@ -46,16 +46,17 @@
             this.infoTextBox = new System.Windows.Forms.RichTextBox();
             this.panelBox = new System.Windows.Forms.Panel();
             this.pictureBoxDezoom = new System.Windows.Forms.PictureBox();
-            this.pictureBoxZoom = new System.Windows.Forms.PictureBox();
             this.pictureBoxNormalize = new System.Windows.Forms.PictureBox();
+            this.pictureBoxZoom = new System.Windows.Forms.PictureBox();
+            this.autoSaveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.tabControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxValid)).BeginInit();
             this.tabControlEditor.SuspendLayout();
             this.panelBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxDezoom)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxZoom)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxNormalize)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxZoom)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip
@@ -131,6 +132,8 @@
             // 
             // settingsToolStripMenuItem
             // 
+            this.settingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.autoSaveToolStripMenuItem});
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
             this.settingsToolStripMenuItem.Size = new System.Drawing.Size(71, 23);
             this.settingsToolStripMenuItem.Text = "Settings";
@@ -256,6 +259,18 @@
             this.pictureBoxDezoom.TabStop = false;
             this.pictureBoxDezoom.Click += new System.EventHandler(this.PictureBoxDezoom_Click);
             // 
+            // pictureBoxNormalize
+            // 
+            this.pictureBoxNormalize.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBoxNormalize.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBoxNormalize.BackgroundImage")));
+            this.pictureBoxNormalize.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBoxNormalize.Location = new System.Drawing.Point(1209, 11);
+            this.pictureBoxNormalize.Name = "pictureBoxNormalize";
+            this.pictureBoxNormalize.Size = new System.Drawing.Size(18, 18);
+            this.pictureBoxNormalize.TabIndex = 6;
+            this.pictureBoxNormalize.TabStop = false;
+            this.pictureBoxNormalize.Click += new System.EventHandler(this.PictureBoxNormalize_Click);
+            // 
             // pictureBoxZoom
             // 
             this.pictureBoxZoom.BackColor = System.Drawing.Color.Transparent;
@@ -268,17 +283,14 @@
             this.pictureBoxZoom.TabStop = false;
             this.pictureBoxZoom.Click += new System.EventHandler(this.PictureBoxZoom_Click);
             // 
-            // pictureBoxNormalize
+            // autoSaveToolStripMenuItem
             // 
-            this.pictureBoxNormalize.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBoxNormalize.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBoxNormalize.BackgroundImage")));
-            this.pictureBoxNormalize.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBoxNormalize.Location = new System.Drawing.Point(1209, 11);
-            this.pictureBoxNormalize.Name = "pictureBoxNormalize";
-            this.pictureBoxNormalize.Size = new System.Drawing.Size(18, 18);
-            this.pictureBoxNormalize.TabIndex = 6;
-            this.pictureBoxNormalize.TabStop = false;
-            this.pictureBoxNormalize.Click += new System.EventHandler(this.PictureBoxNormalize_Click);
+            this.autoSaveToolStripMenuItem.Enabled = false;
+            this.autoSaveToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("autoSaveToolStripMenuItem.Image")));
+            this.autoSaveToolStripMenuItem.Name = "autoSaveToolStripMenuItem";
+            this.autoSaveToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.autoSaveToolStripMenuItem.Text = "Auto Save";
+            this.autoSaveToolStripMenuItem.Click += new System.EventHandler(this.AutoSaveToolStripMenuItem_Click_1);
             // 
             // xmleditor
             // 
@@ -304,8 +316,8 @@
             this.panelBox.ResumeLayout(false);
             this.panelBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxDezoom)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxZoom)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxNormalize)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxZoom)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -331,6 +343,7 @@
         private System.Windows.Forms.PictureBox pictureBoxDezoom;
         private System.Windows.Forms.PictureBox pictureBoxZoom;
         private System.Windows.Forms.PictureBox pictureBoxNormalize;
+        private System.Windows.Forms.ToolStripMenuItem autoSaveToolStripMenuItem;
     }
 }
 

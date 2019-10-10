@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Input;
+using System.Threading;
 
 namespace XMLEditor
 {
@@ -22,8 +23,11 @@ namespace XMLEditor
         String xmlname;
         String xsdname;
         String msg;
+        String savedxsd;
         float normal = 8.25F;
         float actual = 8.25F;
+        bool autosave = false;
+        bool wassaved = false;
         public xmleditor()
         {
             InitializeComponent();
@@ -32,7 +36,6 @@ namespace XMLEditor
 
         private void Xmleditor_Load(object sender, EventArgs e)
         {
-
         }
 
         public void OpenFile()
@@ -123,15 +126,12 @@ namespace XMLEditor
             {
                 ValidateFile();
             }
-            //if (e.Control && e.KeyCode == Keys.N)
-            //{
-            //    NewFile();
-            //}
         }
 
         private void SaveToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Reader.Save(textBoxReader.Text, xmlname,infoTextBox);
+            wassaved = true;
         }
 
         private void TabControlEditor_DoubleClick(object sender, EventArgs e)
@@ -143,7 +143,6 @@ namespace XMLEditor
 
         private void TextBoxReader_TextChanged(object sender, EventArgs e)
         {
-
         }
 
         private void PanelBox_Paint(object sender, PaintEventArgs e)
@@ -167,6 +166,49 @@ namespace XMLEditor
         {
             actual -= 0.25F;
             this.Font = new System.Drawing.Font("Microsoft YaHei UI", actual);
+        }
+
+        private void AutoSaveToolStripMenuItem_Click_1(object sender, EventArgs e)
+        {
+            if (autosave)
+            {
+                autosave = false;
+                autoSaveToolStripMenuItem.Text = "Auto Save (Currently: OFF)";
+                MessageBox.Show("Autosave turned off.");
+            }
+            else
+            {
+                autosave = true;
+                autoSaveToolStripMenuItem.Text = "Auto Save (Currently: ON)";
+                MessageBox.Show("Autosave turned on.");
+                while (true)
+                {
+                    Thread.Sleep(1000);
+                    Reader.Save(textBoxReader.Text, xmlname, infoTextBox);
+                }
+            }
+        }
+
+        private void AutoSave()
+        {
+            int timer = 0;
+            while (true)
+            {
+                if (timer % 10 == 0)
+                {
+                    Reader.Save(textBoxReader.Text, xmlname, infoTextBox);
+                    MessageBox.Show("Automatically Saved");
+                }
+                if (wassaved)
+                {
+                    timer = 0;
+                    wassaved = false;
+                    MessageBox.Show("Saved while autosave was turned on. Timer reseted.");
+                }
+                timer += 1;
+                Thread.Sleep(1000);
+
+            }
         }
     }
 }
