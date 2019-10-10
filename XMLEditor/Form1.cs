@@ -22,6 +22,8 @@ namespace XMLEditor
         String xmlname;
         String xsdname;
         String msg;
+        float normal = 8.25F;
+        float actual = 8.25F;
         public xmleditor()
         {
             InitializeComponent();
@@ -142,6 +144,29 @@ namespace XMLEditor
         private void TextBoxReader_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void PanelBox_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void PictureBoxNormalize_Click(object sender, EventArgs e)
+        {
+            this.Font = new System.Drawing.Font("Microsoft YaHei UI", normal);
+            actual = normal;
+        }
+
+        private void PictureBoxZoom_Click(object sender, EventArgs e)
+        {
+            actual += actual + 0.001F;
+            this.Font = new System.Drawing.Font("Microsoft YaHei UI", actual);
+        }
+
+        private void PictureBoxDezoom_Click(object sender, EventArgs e)
+        {
+            actual -= actual - 0.001F;
+            this.Font = new System.Drawing.Font("Microsoft YaHei UI", actual);
         }
     }
 }

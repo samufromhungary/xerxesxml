@@ -45,11 +45,17 @@
             this.statusLabel = new System.Windows.Forms.Label();
             this.infoTextBox = new System.Windows.Forms.RichTextBox();
             this.panelBox = new System.Windows.Forms.Panel();
+            this.pictureBoxDezoom = new System.Windows.Forms.PictureBox();
+            this.pictureBoxZoom = new System.Windows.Forms.PictureBox();
+            this.pictureBoxNormalize = new System.Windows.Forms.PictureBox();
             this.menuStrip.SuspendLayout();
             this.tabControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxValid)).BeginInit();
             this.tabControlEditor.SuspendLayout();
             this.panelBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxDezoom)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxZoom)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxNormalize)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip
@@ -224,6 +230,9 @@
             this.panelBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelBox.Controls.Add(this.pictureBoxDezoom);
+            this.panelBox.Controls.Add(this.pictureBoxNormalize);
+            this.panelBox.Controls.Add(this.pictureBoxZoom);
             this.panelBox.Controls.Add(this.menuStrip);
             this.panelBox.Controls.Add(this.tabControlEditor);
             this.panelBox.Controls.Add(this.statusLabel);
@@ -233,6 +242,43 @@
             this.panelBox.Name = "panelBox";
             this.panelBox.Size = new System.Drawing.Size(1300, 742);
             this.panelBox.TabIndex = 4;
+            this.panelBox.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelBox_Paint);
+            // 
+            // pictureBoxDezoom
+            // 
+            this.pictureBoxDezoom.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBoxDezoom.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBoxDezoom.BackgroundImage")));
+            this.pictureBoxDezoom.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBoxDezoom.Location = new System.Drawing.Point(1233, 11);
+            this.pictureBoxDezoom.Name = "pictureBoxDezoom";
+            this.pictureBoxDezoom.Size = new System.Drawing.Size(18, 18);
+            this.pictureBoxDezoom.TabIndex = 5;
+            this.pictureBoxDezoom.TabStop = false;
+            this.pictureBoxDezoom.Click += new System.EventHandler(this.PictureBoxDezoom_Click);
+            // 
+            // pictureBoxZoom
+            // 
+            this.pictureBoxZoom.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBoxZoom.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBoxZoom.BackgroundImage")));
+            this.pictureBoxZoom.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBoxZoom.Location = new System.Drawing.Point(1185, 11);
+            this.pictureBoxZoom.Name = "pictureBoxZoom";
+            this.pictureBoxZoom.Size = new System.Drawing.Size(18, 18);
+            this.pictureBoxZoom.TabIndex = 4;
+            this.pictureBoxZoom.TabStop = false;
+            this.pictureBoxZoom.Click += new System.EventHandler(this.PictureBoxZoom_Click);
+            // 
+            // pictureBoxNormalize
+            // 
+            this.pictureBoxNormalize.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBoxNormalize.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBoxNormalize.BackgroundImage")));
+            this.pictureBoxNormalize.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBoxNormalize.Location = new System.Drawing.Point(1209, 11);
+            this.pictureBoxNormalize.Name = "pictureBoxNormalize";
+            this.pictureBoxNormalize.Size = new System.Drawing.Size(18, 18);
+            this.pictureBoxNormalize.TabIndex = 6;
+            this.pictureBoxNormalize.TabStop = false;
+            this.pictureBoxNormalize.Click += new System.EventHandler(this.PictureBoxNormalize_Click);
             // 
             // xmleditor
             // 
@@ -257,6 +303,9 @@
             this.tabControlEditor.ResumeLayout(false);
             this.panelBox.ResumeLayout(false);
             this.panelBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxDezoom)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxZoom)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxNormalize)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -279,6 +328,9 @@
         private System.Windows.Forms.ToolStripMenuItem saveAsToolStripMenuItem;
         private System.Windows.Forms.RichTextBox infoTextBox;
         private System.Windows.Forms.Panel panelBox;
+        private System.Windows.Forms.PictureBox pictureBoxDezoom;
+        private System.Windows.Forms.PictureBox pictureBoxZoom;
+        private System.Windows.Forms.PictureBox pictureBoxNormalize;
     }
 }
 
