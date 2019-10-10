@@ -159,13 +159,13 @@ namespace XMLEditor
 
         private void PictureBoxZoom_Click(object sender, EventArgs e)
         {
-            actual += actual + 0.001F;
+            actual += 0.25F;
             this.Font = new System.Drawing.Font("Microsoft YaHei UI", actual);
         }
 
         private void PictureBoxDezoom_Click(object sender, EventArgs e)
         {
-            actual -= actual - 0.001F;
+            actual -= 0.25F;
             this.Font = new System.Drawing.Font("Microsoft YaHei UI", actual);
         }
     }
