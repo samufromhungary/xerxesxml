@@ -28,46 +28,56 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.descriptionLabel = new System.Windows.Forms.Label();
-            this.titleLabel = new System.Windows.Forms.Label();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(About));
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBoxAbout = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAbout)).BeginInit();
             this.SuspendLayout();
             // 
-            // descriptionLabel
+            // pictureBox1
             // 
-            this.descriptionLabel.AutoSize = true;
-            this.descriptionLabel.Location = new System.Drawing.Point(250, 108);
-            this.descriptionLabel.Name = "descriptionLabel";
-            this.descriptionLabel.Size = new System.Drawing.Size(43, 13);
-            this.descriptionLabel.TabIndex = 1;
-            this.descriptionLabel.Text = "Szöveg";
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(398, 297);
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
             // 
-            // titleLabel
+            // pictureBoxAbout
             // 
-            this.titleLabel.AutoSize = true;
-            this.titleLabel.Location = new System.Drawing.Point(267, 43);
-            this.titleLabel.Name = "titleLabel";
-            this.titleLabel.Size = new System.Drawing.Size(26, 13);
-            this.titleLabel.TabIndex = 0;
-            this.titleLabel.Text = "Cím";
+            this.pictureBoxAbout.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBoxAbout.BackgroundImage")));
+            this.pictureBoxAbout.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBoxAbout.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBoxAbout.Location = new System.Drawing.Point(0, 0);
+            this.pictureBoxAbout.Name = "pictureBoxAbout";
+            this.pictureBoxAbout.Size = new System.Drawing.Size(498, 194);
+            this.pictureBoxAbout.TabIndex = 1;
+            this.pictureBoxAbout.TabStop = false;
             // 
             // About
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(568, 450);
-            this.Controls.Add(this.descriptionLabel);
-            this.Controls.Add(this.titleLabel);
+            this.ClientSize = new System.Drawing.Size(498, 194);
+            this.Controls.Add(this.pictureBoxAbout);
+            this.Controls.Add(this.pictureBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(100, 200);
             this.Name = "About";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "About";
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAbout)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Label descriptionLabel;
-        private System.Windows.Forms.Label titleLabel;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pictureBoxAbout;
     }
 }

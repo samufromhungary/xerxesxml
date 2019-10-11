@@ -161,6 +161,7 @@ namespace XMLEditor
         private void TextBoxReader_TextChanged(object sender, EventArgs e)
         {
         }
+ 
 
         private void PanelBox_Paint(object sender, PaintEventArgs e)
         {
