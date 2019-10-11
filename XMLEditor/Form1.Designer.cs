@@ -37,6 +37,7 @@
             this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.validateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.autoSaveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl = new System.Windows.Forms.TabPage();
             this.pictureBoxValid = new System.Windows.Forms.PictureBox();
@@ -48,7 +49,7 @@
             this.pictureBoxDezoom = new System.Windows.Forms.PictureBox();
             this.pictureBoxNormalize = new System.Windows.Forms.PictureBox();
             this.pictureBoxZoom = new System.Windows.Forms.PictureBox();
-            this.autoSaveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tabAdd = new System.Windows.Forms.TabPage();
             this.menuStrip.SuspendLayout();
             this.tabControl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxValid)).BeginInit();
@@ -72,8 +73,9 @@
             this.settingsToolStripMenuItem,
             this.aboutToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(11, 11);
+            this.menuStrip.MinimumSize = new System.Drawing.Size(299, 27);
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(179, 27);
+            this.menuStrip.Size = new System.Drawing.Size(299, 27);
             this.menuStrip.TabIndex = 0;
             this.menuStrip.Text = "menuStrip";
             // 
@@ -138,6 +140,15 @@
             this.settingsToolStripMenuItem.Size = new System.Drawing.Size(71, 23);
             this.settingsToolStripMenuItem.Text = "Settings";
             // 
+            // autoSaveToolStripMenuItem
+            // 
+            this.autoSaveToolStripMenuItem.Enabled = false;
+            this.autoSaveToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("autoSaveToolStripMenuItem.Image")));
+            this.autoSaveToolStripMenuItem.Name = "autoSaveToolStripMenuItem";
+            this.autoSaveToolStripMenuItem.Size = new System.Drawing.Size(141, 24);
+            this.autoSaveToolStripMenuItem.Text = "Auto Save";
+            this.autoSaveToolStripMenuItem.Click += new System.EventHandler(this.AutoSaveToolStripMenuItem_Click_1);
+            // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
@@ -147,25 +158,27 @@
             // 
             // tabControl
             // 
+            this.tabControl.Controls.Add(this.statusLabel);
             this.tabControl.Controls.Add(this.pictureBoxValid);
             this.tabControl.Controls.Add(this.textBoxReader);
             this.tabControl.Location = new System.Drawing.Point(4, 25);
             this.tabControl.Name = "tabControl";
             this.tabControl.Padding = new System.Windows.Forms.Padding(3);
-            this.tabControl.Size = new System.Drawing.Size(1255, 370);
+            this.tabControl.Size = new System.Drawing.Size(1197, 257);
             this.tabControl.TabIndex = 0;
             this.tabControl.Text = "Page 1";
             this.tabControl.UseVisualStyleBackColor = true;
             // 
             // pictureBoxValid
             // 
-            this.pictureBoxValid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
+            this.pictureBoxValid.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBoxValid.BackColor = System.Drawing.Color.Lime;
-            this.pictureBoxValid.Location = new System.Drawing.Point(1217, 6);
+            this.pictureBoxValid.Location = new System.Drawing.Point(1142, 6);
+            this.pictureBoxValid.MaximumSize = new System.Drawing.Size(10, 13);
+            this.pictureBoxValid.MinimumSize = new System.Drawing.Size(10, 13);
             this.pictureBoxValid.Name = "pictureBoxValid";
-            this.pictureBoxValid.Size = new System.Drawing.Size(13, 12);
+            this.pictureBoxValid.Size = new System.Drawing.Size(10, 13);
             this.pictureBoxValid.TabIndex = 0;
             this.pictureBoxValid.TabStop = false;
             this.pictureBoxValid.Visible = false;
@@ -177,9 +190,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxReader.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxReader.Location = new System.Drawing.Point(3, 3);
-            this.textBoxReader.MinimumSize = new System.Drawing.Size(300, 200);
+            this.textBoxReader.MaximumSize = new System.Drawing.Size(1307, 382);
+            this.textBoxReader.MinimumSize = new System.Drawing.Size(300, 100);
             this.textBoxReader.Name = "textBoxReader";
-            this.textBoxReader.Size = new System.Drawing.Size(1249, 508);
+            this.textBoxReader.Size = new System.Drawing.Size(1191, 382);
             this.textBoxReader.TabIndex = 1;
             this.textBoxReader.Text = "";
             this.textBoxReader.SelectionChanged += new System.EventHandler(this.TextBoxReader_SelectionChanged);
@@ -192,21 +206,21 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControlEditor.Controls.Add(this.tabControl);
-            this.tabControlEditor.Location = new System.Drawing.Point(11, 52);
+            this.tabControlEditor.Controls.Add(this.tabAdd);
+            this.tabControlEditor.Location = new System.Drawing.Point(21, 41);
             this.tabControlEditor.MinimumSize = new System.Drawing.Size(400, 200);
             this.tabControlEditor.Name = "tabControlEditor";
             this.tabControlEditor.SelectedIndex = 0;
-            this.tabControlEditor.Size = new System.Drawing.Size(1263, 399);
+            this.tabControlEditor.Size = new System.Drawing.Size(1205, 286);
             this.tabControlEditor.TabIndex = 1;
             this.tabControlEditor.DoubleClick += new System.EventHandler(this.TabControlEditor_DoubleClick);
             // 
             // statusLabel
             // 
-            this.statusLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.statusLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.statusLabel.AutoSize = true;
-            this.statusLabel.Location = new System.Drawing.Point(1072, 474);
+            this.statusLabel.Location = new System.Drawing.Point(1042, 245);
+            this.statusLabel.MinimumSize = new System.Drawing.Size(30, 16);
             this.statusLabel.Name = "statusLabel";
             this.statusLabel.Size = new System.Drawing.Size(30, 16);
             this.statusLabel.TabIndex = 3;
@@ -220,11 +234,12 @@
             this.infoTextBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.infoTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.infoTextBox.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.infoTextBox.Location = new System.Drawing.Point(4, 529);
-            this.infoTextBox.MinimumSize = new System.Drawing.Size(400, 200);
+            this.infoTextBox.Location = new System.Drawing.Point(25, 369);
+            this.infoTextBox.MaximumSize = new System.Drawing.Size(1307, 167);
+            this.infoTextBox.MinimumSize = new System.Drawing.Size(300, 100);
             this.infoTextBox.Name = "infoTextBox";
             this.infoTextBox.ReadOnly = true;
-            this.infoTextBox.Size = new System.Drawing.Size(1270, 200);
+            this.infoTextBox.Size = new System.Drawing.Size(1207, 167);
             this.infoTextBox.TabIndex = 0;
             this.infoTextBox.Text = "";
             // 
@@ -238,21 +253,22 @@
             this.panelBox.Controls.Add(this.pictureBoxZoom);
             this.panelBox.Controls.Add(this.menuStrip);
             this.panelBox.Controls.Add(this.tabControlEditor);
-            this.panelBox.Controls.Add(this.statusLabel);
             this.panelBox.Controls.Add(this.infoTextBox);
             this.panelBox.Location = new System.Drawing.Point(3, -2);
             this.panelBox.MinimumSize = new System.Drawing.Size(600, 500);
             this.panelBox.Name = "panelBox";
-            this.panelBox.Size = new System.Drawing.Size(1300, 742);
+            this.panelBox.Size = new System.Drawing.Size(1281, 564);
             this.panelBox.TabIndex = 4;
             this.panelBox.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelBox_Paint);
             // 
             // pictureBoxDezoom
             // 
+            this.pictureBoxDezoom.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBoxDezoom.BackColor = System.Drawing.Color.Transparent;
             this.pictureBoxDezoom.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBoxDezoom.BackgroundImage")));
             this.pictureBoxDezoom.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBoxDezoom.Location = new System.Drawing.Point(1233, 11);
+            this.pictureBoxDezoom.Location = new System.Drawing.Point(1191, 20);
+            this.pictureBoxDezoom.MinimumSize = new System.Drawing.Size(18, 18);
             this.pictureBoxDezoom.Name = "pictureBoxDezoom";
             this.pictureBoxDezoom.Size = new System.Drawing.Size(18, 18);
             this.pictureBoxDezoom.TabIndex = 5;
@@ -261,10 +277,12 @@
             // 
             // pictureBoxNormalize
             // 
+            this.pictureBoxNormalize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBoxNormalize.BackColor = System.Drawing.Color.Transparent;
             this.pictureBoxNormalize.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBoxNormalize.BackgroundImage")));
             this.pictureBoxNormalize.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBoxNormalize.Location = new System.Drawing.Point(1209, 11);
+            this.pictureBoxNormalize.Location = new System.Drawing.Point(1167, 20);
+            this.pictureBoxNormalize.MinimumSize = new System.Drawing.Size(18, 18);
             this.pictureBoxNormalize.Name = "pictureBoxNormalize";
             this.pictureBoxNormalize.Size = new System.Drawing.Size(18, 18);
             this.pictureBoxNormalize.TabIndex = 6;
@@ -273,31 +291,34 @@
             // 
             // pictureBoxZoom
             // 
+            this.pictureBoxZoom.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBoxZoom.BackColor = System.Drawing.Color.Transparent;
             this.pictureBoxZoom.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBoxZoom.BackgroundImage")));
             this.pictureBoxZoom.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBoxZoom.Location = new System.Drawing.Point(1185, 11);
+            this.pictureBoxZoom.Location = new System.Drawing.Point(1143, 20);
+            this.pictureBoxZoom.MinimumSize = new System.Drawing.Size(18, 18);
             this.pictureBoxZoom.Name = "pictureBoxZoom";
             this.pictureBoxZoom.Size = new System.Drawing.Size(18, 18);
             this.pictureBoxZoom.TabIndex = 4;
             this.pictureBoxZoom.TabStop = false;
             this.pictureBoxZoom.Click += new System.EventHandler(this.PictureBoxZoom_Click);
             // 
-            // autoSaveToolStripMenuItem
+            // tabAdd
             // 
-            this.autoSaveToolStripMenuItem.Enabled = false;
-            this.autoSaveToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("autoSaveToolStripMenuItem.Image")));
-            this.autoSaveToolStripMenuItem.Name = "autoSaveToolStripMenuItem";
-            this.autoSaveToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
-            this.autoSaveToolStripMenuItem.Text = "Auto Save";
-            this.autoSaveToolStripMenuItem.Click += new System.EventHandler(this.AutoSaveToolStripMenuItem_Click_1);
+            this.tabAdd.Location = new System.Drawing.Point(4, 25);
+            this.tabAdd.Name = "tabAdd";
+            this.tabAdd.Padding = new System.Windows.Forms.Padding(3);
+            this.tabAdd.Size = new System.Drawing.Size(1197, 257);
+            this.tabAdd.TabIndex = 1;
+            this.tabAdd.Text = "+";
+            this.tabAdd.UseVisualStyleBackColor = true;
             // 
             // xmleditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1289, 739);
+            this.ClientSize = new System.Drawing.Size(1270, 561);
             this.Controls.Add(this.panelBox);
             this.Font = new System.Drawing.Font("Microsoft YaHei UI", 8.25F);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -311,6 +332,7 @@
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
             this.tabControl.ResumeLayout(false);
+            this.tabControl.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxValid)).EndInit();
             this.tabControlEditor.ResumeLayout(false);
             this.panelBox.ResumeLayout(false);
@@ -344,6 +366,7 @@
         private System.Windows.Forms.PictureBox pictureBoxZoom;
         private System.Windows.Forms.PictureBox pictureBoxNormalize;
         private System.Windows.Forms.ToolStripMenuItem autoSaveToolStripMenuItem;
+        private System.Windows.Forms.TabPage tabAdd;
     }
 }
 
