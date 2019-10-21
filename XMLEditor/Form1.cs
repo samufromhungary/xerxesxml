@@ -143,6 +143,10 @@ namespace XMLEditor
                 pictureBoxValid.Visible = false;
                 ValidateFile();
             }
+            if (e.Control && e.KeyCode == Keys.N)
+            {
+                NewFile();
+            }
         }
 
         private void SaveToolStripMenuItem_Click(object sender, EventArgs e)
@@ -216,6 +220,19 @@ namespace XMLEditor
                 timer += 1;
                 Thread.Sleep(1000);
 
+            }
+        }
+
+        private void NewToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            NewFile();
+        }
+
+        private void NewFile()
+        {
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                textBoxReader.SaveFile(saveFileDialog.FileName);
             }
         }
     }
