@@ -48,6 +48,9 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomTab.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="DateFormat.cs" />
     <Compile Include="Explorer.cs" />
     <Compile Include="Form1.cs">

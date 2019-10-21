@@ -20,6 +20,7 @@ namespace XMLEditor
         DateFormat DateFormat = new DateFormat();
         RichTextBox richTextBox = new RichTextBox();
         TabPage tabPage = new TabPage("Page");
+        String text;
         String xmlname;
         String xsdname;
         String msg;
@@ -31,21 +32,33 @@ namespace XMLEditor
         public xmleditor()
         {
             InitializeComponent();
-
+            NewTab();
         }
 
-        private void Xmleditor_Load(object sender, EventArgs e)
+        private void RichTextBox_SelectionChanged(object sender, EventArgs e)
         {
+            var selectedTab = tabControlEditor.SelectedTab;
+
+            foreach (RichTextBox richText in selectedTab.Controls)
+            {
+                int index = richText.SelectionStart;
+                int line = richText.GetLineFromCharIndex(index);
+                statusLabel.Visible = true;
+                int nums = richText.Lines.Length;
+                statusLabel.Text = String.Format("Lines: {0} (Current: {1}) ", nums.ToString(), (line + 1).ToString());
+            }
         }
 
         public void OpenFile()
         {
             xmlname = Explorer.SelectedFilePathXml();
             Reset();
-            //var selectedTab = tabControlEditor.SelectedTab;
-            //selectedTab.Controls.Add(richTextBox);
-            textBoxReader.Text = Reader.Read(xmlname, infoTextBox);
-            tabControl.Text = xmlname;
+            var selectedTab = tabControlEditor.SelectedTab;
+            foreach (RichTextBox richText in selectedTab.Controls)
+            {
+                richText.Text = Reader.Read(xmlname, infoTextBox);
+                selectedTab.Text = xmlname;
+            }
             validateToolStripMenuItem.Enabled = true;
             saveToolStripMenuItem.Enabled = true;
 
@@ -61,7 +74,7 @@ namespace XMLEditor
         }
         void ValidateFile()
         {
-            if (textBoxReader.Text.Length != 0)
+            if (PageIterator().Length != 0)
             {
                 bool? isValid = false;
                 if (savedxsd.Equals(""))
@@ -100,21 +113,19 @@ namespace XMLEditor
 
         void Reset()
         {
-            tabControl.Text = "";
-            textBoxReader.Text = "";
+            tabControlEditor.Text = "";
             pictureBoxValid.Visible = false;
             validateToolStripMenuItem.Enabled = false;
             saveToolStripMenuItem.Enabled = false;
         }
-
-        private void TextBoxReader_SelectionChanged(object sender, EventArgs e)
+        public String PageIterator()
         {
-            int index = textBoxReader.SelectionStart;
-            int line = textBoxReader.GetLineFromCharIndex(index);
-            statusLabel.Visible = true;
-            int nums = textBoxReader.Lines.Length;
-            statusLabel.Text = String.Format("Lines: {0} (Current: {1}) ", nums.ToString(), (line + 1).ToString());
-
+            var selectedTab = tabControlEditor.SelectedTab;
+            foreach (RichTextBox richText in selectedTab.Controls)
+            {
+                text = richText.Text;
+            }
+            return text;
         }
 
         private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
@@ -123,43 +134,15 @@ namespace XMLEditor
             about.ShowDialog();
         }
 
-        private void TextBoxReader_KeyUp(object sender, System.Windows.Forms.KeyEventArgs e)
-        {
-            if (e.Control && e.KeyCode == Keys.O)
-            {
-                OpenFile();
-            }
-            if (e.Control && e.KeyCode == Keys.S)
-            {
-                Reader.Save(textBoxReader.Text,xmlname,infoTextBox);
-            }
-            if (e.Control && e.KeyCode == Keys.V)
-            {
-                ValidateFile();
-            }
-            if (e.Control && e.KeyCode == Keys.B)
-            {
-                savedxsd = "";
-                pictureBoxValid.Visible = false;
-                ValidateFile();
-            }
-            if (e.Control && e.KeyCode == Keys.N)
-            {
-                NewFile();
-            }
-        }
-
         private void SaveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Reader.Save(textBoxReader.Text, xmlname,infoTextBox);
+            Reader.Save(PageIterator(), xmlname,infoTextBox);
             wassaved = true;
         }
 
         private void TabControlEditor_DoubleClick(object sender, EventArgs e)
         {
-            tabControlEditor.TabPages.Add(tabPage);
-            richTextBox.Dock = DockStyle.Fill;
-            tabPage.Controls.Add(new RichTextBox());
+            NewTab();
         }
 
         private void PictureBoxNormalize_Click(object sender, EventArgs e)
@@ -196,7 +179,7 @@ namespace XMLEditor
                 while (true)
                 {
                     Thread.Sleep(1000);
-                    Reader.Save(textBoxReader.Text, xmlname, infoTextBox);
+                    Reader.Save(PageIterator(), xmlname, infoTextBox);
                 }
             }
         }
@@ -208,7 +191,7 @@ namespace XMLEditor
             {
                 if (timer % 10 == 0)
                 {
-                    Reader.Save(textBoxReader.Text, xmlname, infoTextBox);
+                    Reader.Save(PageIterator(), xmlname, infoTextBox);
                     MessageBox.Show("Automatically Saved");
                 }
                 if (wassaved)
@@ -232,8 +215,45 @@ namespace XMLEditor
         {
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                textBoxReader.SaveFile(saveFileDialog.FileName);
+                var selectedTab = tabControlEditor.SelectedTab;
+                foreach (RichTextBox richText in selectedTab.Controls)
+                {
+                    richText.SaveFile(saveFileDialog.FileName);
+                }
             }
+        }
+        void NewTab()
+        {
+            CustomTab ct = new CustomTab();
+            ct.textbox.SelectionChanged += RichTextBox_SelectionChanged;
+            tabControlEditor.TabPages.Add(ct);
+        }
+
+
+        private void tabControlEditor_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
+        {
+            var selectedTab = tabControlEditor.SelectedTab;
+            foreach (RichTextBox richText in selectedTab.Controls)
+            {
+                if (e.Control && e.KeyCode == Keys.O)
+                {
+                    OpenFile();
+                }
+                if (e.Control && e.KeyCode == Keys.S)
+                {
+                    Reader.Save(PageIterator(), xmlname, infoTextBox);
+                }
+                if (e.Control && e.KeyCode == Keys.V)
+                {
+                    ValidateFile();
+                }
+            }
+        }
+
+        private void tabControlEditor_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            statusLabel.Text = String.Empty;
+
         }
     }
 }
