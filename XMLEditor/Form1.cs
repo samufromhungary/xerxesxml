@@ -158,15 +158,6 @@ namespace XMLEditor
             tabPage.Controls.Add(new RichTextBox());
         }
 
-        private void TextBoxReader_TextChanged(object sender, EventArgs e)
-        {
-        }
-
-        private void PanelBox_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private void PictureBoxNormalize_Click(object sender, EventArgs e)
         {
             this.Font = new System.Drawing.Font("Microsoft YaHei UI", normal);

@@ -144,7 +144,6 @@
             this.textBoxReader.TabIndex = 1;
             this.textBoxReader.Text = "";
             this.textBoxReader.SelectionChanged += new System.EventHandler(this.TextBoxReader_SelectionChanged);
-            this.textBoxReader.TextChanged += new System.EventHandler(this.TextBoxReader_TextChanged);
             this.textBoxReader.KeyUp += new System.Windows.Forms.KeyEventHandler(this.TextBoxReader_KeyUp);
             // 
             // tabControlEditor
@@ -193,7 +192,6 @@
             this.panelBox.Name = "panelBox";
             this.panelBox.Size = new System.Drawing.Size(1281, 564);
             this.panelBox.TabIndex = 4;
-            this.panelBox.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelBox_Paint);
             // 
             // pictureBoxDezoom
             // 
