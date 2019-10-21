@@ -31,33 +31,32 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(xmleditor));
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.validateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.autoSaveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl = new System.Windows.Forms.TabPage();
-            this.pictureBoxValid = new System.Windows.Forms.PictureBox();
+            this.statusLabel = new System.Windows.Forms.Label();
             this.textBoxReader = new System.Windows.Forms.RichTextBox();
             this.tabControlEditor = new System.Windows.Forms.TabControl();
-            this.statusLabel = new System.Windows.Forms.Label();
             this.infoTextBox = new System.Windows.Forms.RichTextBox();
             this.panelBox = new System.Windows.Forms.Panel();
             this.pictureBoxDezoom = new System.Windows.Forms.PictureBox();
             this.pictureBoxNormalize = new System.Windows.Forms.PictureBox();
             this.pictureBoxZoom = new System.Windows.Forms.PictureBox();
-            this.tabAdd = new System.Windows.Forms.TabPage();
+            this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.validateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.autoSaveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pictureBoxValid = new System.Windows.Forms.PictureBox();
             this.menuStrip.SuspendLayout();
             this.tabControl.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxValid)).BeginInit();
             this.tabControlEditor.SuspendLayout();
             this.panelBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxDezoom)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxNormalize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxZoom)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxValid)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip
@@ -91,47 +90,6 @@
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(41, 23);
             this.fileToolStripMenuItem.Text = "File";
             // 
-            // newToolStripMenuItem
-            // 
-            this.newToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("newToolStripMenuItem.Image")));
-            this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(132, 24);
-            this.newToolStripMenuItem.Text = "New";
-            // 
-            // openToolStripMenuItem
-            // 
-            this.openToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("openToolStripMenuItem.Image")));
-            this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(132, 24);
-            this.openToolStripMenuItem.Text = "Open";
-            this.openToolStripMenuItem.Click += new System.EventHandler(this.OpenToolStripMenuItem_Click);
-            // 
-            // saveToolStripMenuItem
-            // 
-            this.saveToolStripMenuItem.Enabled = false;
-            this.saveToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("saveToolStripMenuItem.Image")));
-            this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(132, 24);
-            this.saveToolStripMenuItem.Text = "Save";
-            this.saveToolStripMenuItem.Click += new System.EventHandler(this.SaveToolStripMenuItem_Click);
-            // 
-            // saveAsToolStripMenuItem
-            // 
-            this.saveAsToolStripMenuItem.Enabled = false;
-            this.saveAsToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("saveAsToolStripMenuItem.Image")));
-            this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(132, 24);
-            this.saveAsToolStripMenuItem.Text = "Save As..";
-            // 
-            // validateToolStripMenuItem
-            // 
-            this.validateToolStripMenuItem.Enabled = false;
-            this.validateToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("validateToolStripMenuItem.Image")));
-            this.validateToolStripMenuItem.Name = "validateToolStripMenuItem";
-            this.validateToolStripMenuItem.Size = new System.Drawing.Size(132, 24);
-            this.validateToolStripMenuItem.Text = "Validate";
-            this.validateToolStripMenuItem.Click += new System.EventHandler(this.ValidateToolStripMenuItem_Click);
-            // 
             // settingsToolStripMenuItem
             // 
             this.settingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -139,15 +97,6 @@
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
             this.settingsToolStripMenuItem.Size = new System.Drawing.Size(71, 23);
             this.settingsToolStripMenuItem.Text = "Settings";
-            // 
-            // autoSaveToolStripMenuItem
-            // 
-            this.autoSaveToolStripMenuItem.Enabled = false;
-            this.autoSaveToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("autoSaveToolStripMenuItem.Image")));
-            this.autoSaveToolStripMenuItem.Name = "autoSaveToolStripMenuItem";
-            this.autoSaveToolStripMenuItem.Size = new System.Drawing.Size(141, 24);
-            this.autoSaveToolStripMenuItem.Text = "Auto Save";
-            this.autoSaveToolStripMenuItem.Click += new System.EventHandler(this.AutoSaveToolStripMenuItem_Click_1);
             // 
             // aboutToolStripMenuItem
             // 
@@ -169,19 +118,17 @@
             this.tabControl.Text = "Page 1";
             this.tabControl.UseVisualStyleBackColor = true;
             // 
-            // pictureBoxValid
+            // statusLabel
             // 
-            this.pictureBoxValid.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBoxValid.BackColor = System.Drawing.Color.Lime;
-            this.pictureBoxValid.Location = new System.Drawing.Point(1142, 6);
-            this.pictureBoxValid.MaximumSize = new System.Drawing.Size(10, 13);
-            this.pictureBoxValid.MinimumSize = new System.Drawing.Size(10, 13);
-            this.pictureBoxValid.Name = "pictureBoxValid";
-            this.pictureBoxValid.Size = new System.Drawing.Size(10, 13);
-            this.pictureBoxValid.TabIndex = 0;
-            this.pictureBoxValid.TabStop = false;
-            this.pictureBoxValid.Visible = false;
+            this.statusLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.statusLabel.AutoSize = true;
+            this.statusLabel.Location = new System.Drawing.Point(1042, 242);
+            this.statusLabel.MinimumSize = new System.Drawing.Size(30, 16);
+            this.statusLabel.Name = "statusLabel";
+            this.statusLabel.Size = new System.Drawing.Size(30, 16);
+            this.statusLabel.TabIndex = 3;
+            this.statusLabel.Text = "Line";
+            this.statusLabel.Visible = false;
             // 
             // textBoxReader
             // 
@@ -193,7 +140,7 @@
             this.textBoxReader.MaximumSize = new System.Drawing.Size(1307, 382);
             this.textBoxReader.MinimumSize = new System.Drawing.Size(300, 100);
             this.textBoxReader.Name = "textBoxReader";
-            this.textBoxReader.Size = new System.Drawing.Size(1191, 382);
+            this.textBoxReader.Size = new System.Drawing.Size(1191, 379);
             this.textBoxReader.TabIndex = 1;
             this.textBoxReader.Text = "";
             this.textBoxReader.SelectionChanged += new System.EventHandler(this.TextBoxReader_SelectionChanged);
@@ -206,7 +153,6 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControlEditor.Controls.Add(this.tabControl);
-            this.tabControlEditor.Controls.Add(this.tabAdd);
             this.tabControlEditor.Location = new System.Drawing.Point(21, 41);
             this.tabControlEditor.MinimumSize = new System.Drawing.Size(400, 200);
             this.tabControlEditor.Name = "tabControlEditor";
@@ -214,18 +160,6 @@
             this.tabControlEditor.Size = new System.Drawing.Size(1205, 286);
             this.tabControlEditor.TabIndex = 1;
             this.tabControlEditor.DoubleClick += new System.EventHandler(this.TabControlEditor_DoubleClick);
-            // 
-            // statusLabel
-            // 
-            this.statusLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.statusLabel.AutoSize = true;
-            this.statusLabel.Location = new System.Drawing.Point(1042, 245);
-            this.statusLabel.MinimumSize = new System.Drawing.Size(30, 16);
-            this.statusLabel.Name = "statusLabel";
-            this.statusLabel.Size = new System.Drawing.Size(30, 16);
-            this.statusLabel.TabIndex = 3;
-            this.statusLabel.Text = "Line";
-            this.statusLabel.Visible = false;
             // 
             // infoTextBox
             // 
@@ -303,15 +237,69 @@
             this.pictureBoxZoom.TabStop = false;
             this.pictureBoxZoom.Click += new System.EventHandler(this.PictureBoxZoom_Click);
             // 
-            // tabAdd
+            // newToolStripMenuItem
             // 
-            this.tabAdd.Location = new System.Drawing.Point(4, 25);
-            this.tabAdd.Name = "tabAdd";
-            this.tabAdd.Padding = new System.Windows.Forms.Padding(3);
-            this.tabAdd.Size = new System.Drawing.Size(1197, 257);
-            this.tabAdd.TabIndex = 1;
-            this.tabAdd.Text = "+";
-            this.tabAdd.UseVisualStyleBackColor = true;
+            this.newToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("newToolStripMenuItem.Image")));
+            this.newToolStripMenuItem.Name = "newToolStripMenuItem";
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(132, 24);
+            this.newToolStripMenuItem.Text = "New";
+            // 
+            // openToolStripMenuItem
+            // 
+            this.openToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("openToolStripMenuItem.Image")));
+            this.openToolStripMenuItem.Name = "openToolStripMenuItem";
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(132, 24);
+            this.openToolStripMenuItem.Text = "Open";
+            this.openToolStripMenuItem.Click += new System.EventHandler(this.OpenToolStripMenuItem_Click);
+            // 
+            // saveToolStripMenuItem
+            // 
+            this.saveToolStripMenuItem.Enabled = false;
+            this.saveToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("saveToolStripMenuItem.Image")));
+            this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(132, 24);
+            this.saveToolStripMenuItem.Text = "Save";
+            this.saveToolStripMenuItem.Click += new System.EventHandler(this.SaveToolStripMenuItem_Click);
+            // 
+            // saveAsToolStripMenuItem
+            // 
+            this.saveAsToolStripMenuItem.Enabled = false;
+            this.saveAsToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("saveAsToolStripMenuItem.Image")));
+            this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(132, 24);
+            this.saveAsToolStripMenuItem.Text = "Save As..";
+            // 
+            // validateToolStripMenuItem
+            // 
+            this.validateToolStripMenuItem.Enabled = false;
+            this.validateToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("validateToolStripMenuItem.Image")));
+            this.validateToolStripMenuItem.Name = "validateToolStripMenuItem";
+            this.validateToolStripMenuItem.Size = new System.Drawing.Size(132, 24);
+            this.validateToolStripMenuItem.Text = "Validate";
+            this.validateToolStripMenuItem.Click += new System.EventHandler(this.ValidateToolStripMenuItem_Click);
+            // 
+            // autoSaveToolStripMenuItem
+            // 
+            this.autoSaveToolStripMenuItem.Enabled = false;
+            this.autoSaveToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("autoSaveToolStripMenuItem.Image")));
+            this.autoSaveToolStripMenuItem.Name = "autoSaveToolStripMenuItem";
+            this.autoSaveToolStripMenuItem.Size = new System.Drawing.Size(141, 24);
+            this.autoSaveToolStripMenuItem.Text = "Auto Save";
+            this.autoSaveToolStripMenuItem.Click += new System.EventHandler(this.AutoSaveToolStripMenuItem_Click_1);
+            // 
+            // pictureBoxValid
+            // 
+            this.pictureBoxValid.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBoxValid.BackColor = System.Drawing.Color.Lime;
+            this.pictureBoxValid.Location = new System.Drawing.Point(1142, 6);
+            this.pictureBoxValid.MaximumSize = new System.Drawing.Size(10, 13);
+            this.pictureBoxValid.MinimumSize = new System.Drawing.Size(10, 13);
+            this.pictureBoxValid.Name = "pictureBoxValid";
+            this.pictureBoxValid.Size = new System.Drawing.Size(10, 13);
+            this.pictureBoxValid.TabIndex = 0;
+            this.pictureBoxValid.TabStop = false;
+            this.pictureBoxValid.Visible = false;
             // 
             // xmleditor
             // 
@@ -333,13 +321,13 @@
             this.menuStrip.PerformLayout();
             this.tabControl.ResumeLayout(false);
             this.tabControl.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxValid)).EndInit();
             this.tabControlEditor.ResumeLayout(false);
             this.panelBox.ResumeLayout(false);
             this.panelBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxDezoom)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxNormalize)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxZoom)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxValid)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -366,7 +354,6 @@
         private System.Windows.Forms.PictureBox pictureBoxZoom;
         private System.Windows.Forms.PictureBox pictureBoxNormalize;
         private System.Windows.Forms.ToolStripMenuItem autoSaveToolStripMenuItem;
-        private System.Windows.Forms.TabPage tabAdd;
     }
 }
 
