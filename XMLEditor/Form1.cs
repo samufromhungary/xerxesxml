@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Input;
 using System.Threading;
+using System.IO;
 
 namespace XMLEditor
 {
@@ -57,7 +58,7 @@ namespace XMLEditor
             foreach (RichTextBox richText in selectedTab.Controls)
             {
                 richText.Text = Reader.Read(xmlname, infoTextBox);
-                selectedTab.Text = xmlname;
+                selectedTab.Text = Path.GetFileName(xmlname);
             }
             validateToolStripMenuItem.Enabled = true;
             saveToolStripMenuItem.Enabled = true;
@@ -92,21 +93,21 @@ namespace XMLEditor
                 if (isValid == true)
                 {
                     msg = "Validation was successful";
-                    infoTextBox.Text += DateFormat.AppendMessage(msg);
+                    infoTextBox.Text += DateFormat.AppendMessage(msg, Path.GetFileName(xmlname));
                     pictureBoxValid.BackColor = System.Drawing.Color.Lime;
                     pictureBoxValid.Visible = true;
                 }
                 else if (isValid == false)
                 {
                     msg = "Validation was unsuccessful";
-                    infoTextBox.Text += DateFormat.AppendMessage(msg);
+                    infoTextBox.Text += DateFormat.AppendMessage(msg, Path.GetFileName(xmlname));
                     pictureBoxValid.BackColor = System.Drawing.Color.Red;
                     pictureBoxValid.Visible = true;
                 }
                 else
                 {
                     msg = "No XSD found";
-                    infoTextBox.Text += DateFormat.AppendMessage(msg);
+                    infoTextBox.Text += DateFormat.AppendMessage(msg, Path.GetFileName(xmlname));
                 }
             }
         }

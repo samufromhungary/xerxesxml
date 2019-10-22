@@ -40,7 +40,7 @@ namespace XMLEditor
 
             }catch(Exception e)
             {
-                return richTextBox.Text += DateFormat.AppendMessage(e.Message);
+                return richTextBox.Text += DateFormat.AppendMessage(e.Message, Path.GetFileName(xml));
             }
 
         }
@@ -55,7 +55,7 @@ namespace XMLEditor
             }
             catch (XmlException e)
             {
-                richTextBox.Text += DateFormat.AppendMessage(e.Message);
+                richTextBox.Text += DateFormat.AppendMessage(e.Message, Path.GetFileName(xml));
             }
         }
 

@@ -19,9 +19,9 @@ namespace XMLEditor
             return localDate.ToString();
         }
 
-        public String AppendMessage(String msg)
+        public String AppendMessage(String msg, String filename)
         {
-            return "\n" + CurrentDate() + ": " + msg;
+            return "\n" + CurrentDate() + ": " + msg + " (" + filename + ")";
         }
     }
 }
