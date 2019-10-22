@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Windows.Input;
 using System.Threading;
 using System.IO;
+using System.Xml;
 
 namespace XMLEditor
 {
@@ -63,6 +64,19 @@ namespace XMLEditor
             validateToolStripMenuItem.Enabled = true;
             saveToolStripMenuItem.Enabled = true;
 
+        }
+
+        public void OpenWithoutExplorer(String xml)
+        {
+            Reset();
+            var selectedTab = tabControlEditor.SelectedTab;
+            foreach (RichTextBox richText in selectedTab.Controls)
+            {
+                richText.Text = Reader.Read(xml, infoTextBox);
+                selectedTab.Text = Path.GetFileName(xml);
+            }
+            validateToolStripMenuItem.Enabled = true;
+            saveToolStripMenuItem.Enabled = true;
         }
         private void OpenToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -137,13 +151,21 @@ namespace XMLEditor
 
         private void SaveToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Reader.Save(PageIterator(), xmlname,infoTextBox);
+
+            if(xmlname == null)
+            {
+                OpenWithoutExplorer(NewFile());
+            }
+            else
+            {
+                Reader.Save(PageIterator(), xmlname, infoTextBox);
+            }
+
             wassaved = true;
         }
 
         private void TabControlEditor_DoubleClick(object sender, EventArgs e)
         {
-            NewTab();
         }
 
         private void PictureBoxNormalize_Click(object sender, EventArgs e)
@@ -209,24 +231,28 @@ namespace XMLEditor
 
         private void NewToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            NewFile();
+            NewTab();
+            saveToolStripMenuItem.Enabled = true;
+
         }
 
-        private void NewFile()
+        private String NewFile()
         {
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
                 var selectedTab = tabControlEditor.SelectedTab;
                 foreach (RichTextBox richText in selectedTab.Controls)
                 {
-                    richText.SaveFile(saveFileDialog.FileName);
+                    Reader.Save(PageIterator(), saveFileDialog.FileName, richText);
+                    return Path.GetFullPath(saveFileDialog.FileName);
                 }
-            }
+            }return null;
         }
         void NewTab()
         {
             CustomTab ct = new CustomTab();
             ct.textbox.SelectionChanged += RichTextBox_SelectionChanged;
+            ct.Text = "Untitled";
             tabControlEditor.TabPages.Add(ct);
         }
 
