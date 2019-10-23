@@ -42,6 +42,7 @@
             this.tabControlEditor = new System.Windows.Forms.TabControl();
             this.infoTextBox = new System.Windows.Forms.RichTextBox();
             this.panelBox = new System.Windows.Forms.Panel();
+            this.listBox1 = new System.Windows.Forms.ListBox();
             this.pictureBoxValid = new System.Windows.Forms.PictureBox();
             this.statusLabel = new System.Windows.Forms.Label();
             this.pictureBoxDezoom = new System.Windows.Forms.PictureBox();
@@ -91,7 +92,7 @@
             // 
             this.newToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("newToolStripMenuItem.Image")));
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(132, 24);
             this.newToolStripMenuItem.Text = "New";
             this.newToolStripMenuItem.Click += new System.EventHandler(this.NewToolStripMenuItem_Click);
             // 
@@ -99,7 +100,7 @@
             // 
             this.openToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("openToolStripMenuItem.Image")));
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(132, 24);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.OpenToolStripMenuItem_Click);
             // 
@@ -108,7 +109,7 @@
             this.saveToolStripMenuItem.Enabled = false;
             this.saveToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("saveToolStripMenuItem.Image")));
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(132, 24);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.SaveToolStripMenuItem_Click);
             // 
@@ -117,7 +118,7 @@
             this.saveAsToolStripMenuItem.Enabled = false;
             this.saveAsToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("saveAsToolStripMenuItem.Image")));
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(132, 24);
             this.saveAsToolStripMenuItem.Text = "Save As..";
             // 
             // validateToolStripMenuItem
@@ -125,7 +126,7 @@
             this.validateToolStripMenuItem.Enabled = false;
             this.validateToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("validateToolStripMenuItem.Image")));
             this.validateToolStripMenuItem.Name = "validateToolStripMenuItem";
-            this.validateToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.validateToolStripMenuItem.Size = new System.Drawing.Size(132, 24);
             this.validateToolStripMenuItem.Text = "Validate";
             this.validateToolStripMenuItem.Click += new System.EventHandler(this.ValidateToolStripMenuItem_Click);
             // 
@@ -165,8 +166,8 @@
             this.tabControlEditor.Size = new System.Drawing.Size(1205, 286);
             this.tabControlEditor.TabIndex = 1;
             this.tabControlEditor.SelectedIndexChanged += new System.EventHandler(this.tabControlEditor_SelectedIndexChanged);
-            this.tabControlEditor.DoubleClick += new System.EventHandler(this.TabControlEditor_DoubleClick);
             this.tabControlEditor.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tabControlEditor_KeyDown);
+            this.tabControlEditor.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tabControlEditor_KeyPress);
             // 
             // infoTextBox
             // 
@@ -189,6 +190,7 @@
             this.panelBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelBox.Controls.Add(this.listBox1);
             this.panelBox.Controls.Add(this.pictureBoxValid);
             this.panelBox.Controls.Add(this.statusLabel);
             this.panelBox.Controls.Add(this.pictureBoxDezoom);
@@ -202,6 +204,19 @@
             this.panelBox.Name = "panelBox";
             this.panelBox.Size = new System.Drawing.Size(1281, 564);
             this.panelBox.TabIndex = 4;
+            // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.ItemHeight = 16;
+            this.listBox1.Items.AddRange(new object[] {
+            "ASD"});
+            this.listBox1.Location = new System.Drawing.Point(569, 211);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(121, 116);
+            this.listBox1.TabIndex = 7;
+            this.listBox1.Visible = false;
+            this.listBox1.DoubleClick += new System.EventHandler(this.listBox1_DoubleClick);
             // 
             // pictureBoxValid
             // 
@@ -322,6 +337,7 @@
         private System.Windows.Forms.SaveFileDialog saveFileDialog;
         private System.Windows.Forms.PictureBox pictureBoxValid;
         private System.Windows.Forms.Label statusLabel;
+        private System.Windows.Forms.ListBox listBox1;
     }
 }
 

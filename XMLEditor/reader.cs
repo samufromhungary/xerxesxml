@@ -13,6 +13,8 @@ namespace XMLEditor
 {
     public class Reader
     {
+        string asd;
+
 
         DateFormat DateFormat = new DateFormat();
         public Reader()
@@ -43,6 +45,30 @@ namespace XMLEditor
                 return richTextBox.Text += DateFormat.AppendMessage(e.Message, Path.GetFileName(xml));
             }
 
+        }
+        public List<string> ReadXSD(String xsd)
+        {
+            List<String> tags = new List<string>();
+            if (xsd.EndsWith(".xsd"))
+            {
+
+                var xs = XNamespace.Get("http://www.w3.org/2001/XMLSchema");
+                var doc = XDocument.Load(xsd);
+
+                foreach (var element in doc.Descendants(xs + "element"))
+                {
+                    tags.Add(element.Attribute("name").Value);
+                    //for(int i = 0; i < tags.Count; i++)
+                    //{
+                    //}
+                    //return asd.Trim();
+                }
+            }
+            else
+            {
+                return null;
+            }
+            return tags;
         }
 
         public void Save(String content, String xml,RichTextBox richTextBox)

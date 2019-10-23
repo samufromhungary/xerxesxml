@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Threading;
 using System.IO;
 using System.Xml;
+using System.Windows.Media;
 
 namespace XMLEditor
 {
@@ -22,6 +23,11 @@ namespace XMLEditor
         DateFormat DateFormat = new DateFormat();
         RichTextBox richTextBox = new RichTextBox();
         TabPage tabPage = new TabPage("Page");
+
+        bool listShow = false;
+        string keyword = "<";
+        int count = 0;
+
         String text;
         String xmlname;
         String xsdname;
@@ -50,6 +56,7 @@ namespace XMLEditor
                 statusLabel.Text = String.Format("Lines: {0} (Current: {1}) ", nums.ToString(), (line + 1).ToString());
             }
         }
+
 
         public void OpenFile()
         {
@@ -102,14 +109,18 @@ namespace XMLEditor
                 {
                     isValid = Validator.Validate(savedxsd, xmlname);
                 }
-
                 
                 if (isValid == true)
                 {
+                    List<string> asd = Reader.ReadXSD(xsdname);
                     msg = "Validation was successful";
                     infoTextBox.Text += DateFormat.AppendMessage(msg, Path.GetFileName(xmlname));
                     pictureBoxValid.BackColor = System.Drawing.Color.Lime;
                     pictureBoxValid.Visible = true;
+                    for(int i = 0; i < asd.Count; i++)
+                    {
+                       listBox1.Items.Add(asd[i]);
+                    }
                 }
                 else if (isValid == false)
                 {
@@ -164,9 +175,6 @@ namespace XMLEditor
             wassaved = true;
         }
 
-        private void TabControlEditor_DoubleClick(object sender, EventArgs e)
-        {
-        }
 
         private void PictureBoxNormalize_Click(object sender, EventArgs e)
         {
@@ -256,7 +264,6 @@ namespace XMLEditor
             tabControlEditor.TabPages.Add(ct);
         }
 
-
         private void tabControlEditor_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
         {
             var selectedTab = tabControlEditor.SelectedTab;
@@ -274,6 +281,69 @@ namespace XMLEditor
                 {
                     ValidateFile();
                 }
+                if (e.KeyCode == Keys.Enter)
+                {
+                    count = 0;
+                    keyword = "<";
+                    listShow = false;
+                    listBox1.Hide();
+
+                }
+                if (e.KeyCode == Keys.Space)
+                {
+                    count = 0;
+                    keyword = "<";
+                    listShow = false;
+                    listBox1.Hide();
+                }
+
+                if (listShow == true)
+                {
+                    if (e.KeyCode == Keys.Up)
+                    {
+                        listBox1.Focus();
+                        if (listBox1.SelectedIndex != 0)
+                        {
+                            listBox1.SelectedIndex -= 1;
+                        }
+                        else
+                        {
+                            listBox1.SelectedIndex = 0;
+                        }
+                        richText.Focus();
+
+                    }
+                    else if (e.KeyCode == Keys.Down)
+                    {
+                        listBox1.Focus();
+                        try
+                        {
+                            listBox1.SelectedIndex += 1;
+                        }
+                        catch
+                        {
+                        }
+                        richText.Focus();
+                    }
+
+                    if (e.KeyCode == Keys.Tab)
+                    {
+
+                        string autoText = listBox1.SelectedItem.ToString();
+
+                        int beginPlace = richText.SelectionStart - count;
+                        richText.Select(beginPlace, count);
+                        richText.SelectedText = "";
+                        richText.Text += autoText;
+                        richText.Focus();
+                        listShow = false;
+                        listBox1.Hide();
+                        int endPlace = autoText.Length + beginPlace;
+                        richText.SelectionStart = endPlace;
+                        count = 0;
+
+                    }
+                }
             }
         }
 
@@ -281,6 +351,69 @@ namespace XMLEditor
         {
             statusLabel.Text = String.Empty;
 
+        }
+
+        private void listBox1_DoubleClick(object sender, EventArgs e)
+        {
+            var selectedTab = tabControlEditor.SelectedTab;
+            foreach (RichTextBox richText in selectedTab.Controls)
+            {
+                string autoText = listBox1.SelectedItem.ToString();
+                int beginPlace = richText.SelectionStart - count;
+                richText.Select(beginPlace, count);
+                richText.SelectedText = "";
+                richText.Text += autoText;
+                richText.Focus();
+                listShow = false;
+                listBox1.Hide();
+                int endPlace = autoText.Length + beginPlace;
+                richText.SelectionStart = endPlace;
+                count = 0;
+            }
+        }
+
+        private void tabControlEditor_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                var selectedTab = tabControlEditor.SelectedTab;
+
+                foreach (RichTextBox richText in selectedTab.Controls)
+                {
+                    if (listShow == true)
+                    {
+                        keyword += e.KeyChar;
+                        count++;
+                        Point point = richText.GetPositionFromCharIndex(richText.SelectionStart);
+                        point.Y += (int)Math.Ceiling(richText.Font.GetHeight()) + 13; //13 is the .y postion of the richtectbox
+                        point.X += 105; //105 is the .x postion of the richtectbox
+                        listBox1.Location = point;
+                        listBox1.Show();
+                        listBox1.SelectedIndex = 0;
+                        listBox1.SelectedIndex = listBox1.FindString(keyword);
+                        richText.Focus();
+                    }
+
+                    if (e.KeyChar == '<' && listBox1.Items.Count > 0)
+                    {
+
+                        listShow = true;
+                        Point point = richText.GetPositionFromCharIndex(richText.SelectionStart);
+                        point.Y += (int)Math.Ceiling(richText.Font.GetHeight()) + 13; //13 is the .y postion of the richtectbox
+                        point.X += 105; //105 is the .x postion of the richtectbox
+                        listBox1.Location = point;
+                        count++;
+                        listBox1.Show();
+                        listBox1.SelectedIndex = 0;
+                        listBox1.SelectedIndex = listBox1.FindString(keyword);
+                        richText.Focus();
+                    }
+                }
+            } 
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }
