@@ -53,7 +53,8 @@ namespace XMLEditor
                 int line = richText.GetLineFromCharIndex(index);
                 statusLabel.Visible = true;
                 int nums = richText.Lines.Length;
-                statusLabel.Text = String.Format("Lines: {0} (Current: {1}) ", nums.ToString(), (line + 1).ToString());
+
+                statusLabel.Text = String.Format("Lines: {0} (Current: {1})  ", nums.ToString(), (line + 1).ToString());
             }
         }
 
@@ -260,7 +261,6 @@ namespace XMLEditor
         {
             CustomTab ct = new CustomTab();
             ct.textbox.SelectionChanged += RichTextBox_SelectionChanged;
-            ct.Text = "Untitled";
             tabControlEditor.TabPages.Add(ct);
         }
 
@@ -330,28 +330,18 @@ namespace XMLEditor
                     {
 
                         string autoText = listBox1.SelectedItem.ToString();
-
-                        int beginPlace = richText.SelectionStart - count;
-                        richText.Select(beginPlace, count);
+                        int beginPlace = richText.SelectionStart;
                         richText.SelectedText = "";
-                        richText.Text += autoText;
+                        richText.Text = richText.Text.Insert(beginPlace, autoText);
                         richText.Focus();
                         listShow = false;
                         listBox1.Hide();
-                        int endPlace = autoText.Length + beginPlace;
-                        richText.SelectionStart = endPlace;
-                        count = 0;
 
                     }
                 }
             }
         }
 
-        private void tabControlEditor_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            statusLabel.Text = String.Empty;
-
-        }
 
         private void listBox1_DoubleClick(object sender, EventArgs e)
         {
@@ -359,16 +349,12 @@ namespace XMLEditor
             foreach (RichTextBox richText in selectedTab.Controls)
             {
                 string autoText = listBox1.SelectedItem.ToString();
-                int beginPlace = richText.SelectionStart - count;
-                richText.Select(beginPlace, count);
+                int beginPlace = richText.SelectionStart;
                 richText.SelectedText = "";
-                richText.Text += autoText;
+                richText.Text = richText.Text.Insert(beginPlace, autoText);
                 richText.Focus();
                 listShow = false;
                 listBox1.Hide();
-                int endPlace = autoText.Length + beginPlace;
-                richText.SelectionStart = endPlace;
-                count = 0;
             }
         }
 
@@ -414,6 +400,11 @@ namespace XMLEditor
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void tabControlEditor_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            statusLabel.Text = String.Empty;
         }
     }
 }
