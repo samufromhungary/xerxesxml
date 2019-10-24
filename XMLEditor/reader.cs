@@ -64,10 +64,6 @@ namespace XMLEditor
                 foreach (var element in doc.Descendants(xs + "element"))
                 {
                     tags.Add(element.Attribute("name").Value);
-                    //for(int i = 0; i < tags.Count; i++)
-                    //{
-                    //}
-                    //return asd.Trim();
                 }
             }
             else
