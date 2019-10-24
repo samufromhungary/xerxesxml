@@ -204,6 +204,7 @@
             this.panelBox.Name = "panelBox";
             this.panelBox.Size = new System.Drawing.Size(1281, 564);
             this.panelBox.TabIndex = 4;
+            this.panelBox.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelBox_Paint);
             // 
             // listBox1
             // 

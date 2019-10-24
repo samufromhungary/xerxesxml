@@ -35,6 +35,8 @@ namespace XMLEditor
         String savedxsd = "";
         float normal = 8.25F;
         float actual = 8.25F;
+
+        System.Windows.Forms.Timer myTimer = new System.Windows.Forms.Timer();
         bool autosave = false;
         bool wassaved = false;
         public xmleditor()
@@ -67,6 +69,7 @@ namespace XMLEditor
             {
                 richText.Text = Reader.Read(xmlname, infoTextBox);
                 selectedTab.Text = Path.GetFileName(xmlname);
+                Reader.Highlight(richText);
             }
             validateToolStripMenuItem.Enabled = true;
             saveToolStripMenuItem.Enabled = true;
@@ -81,6 +84,7 @@ namespace XMLEditor
             {
                 richText.Text = Reader.Read(xml, infoTextBox);
                 selectedTab.Text = Path.GetFileName(xml);
+                Reader.Highlight(richText);
             }
             validateToolStripMenuItem.Enabled = true;
             saveToolStripMenuItem.Enabled = true;
@@ -414,6 +418,11 @@ namespace XMLEditor
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void PanelBox_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
