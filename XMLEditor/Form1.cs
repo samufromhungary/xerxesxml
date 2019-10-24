@@ -285,6 +285,11 @@ namespace XMLEditor
                 {
                     ValidateFile();
                 }
+                if (e.Control && e.KeyCode == Keys.B)
+                {
+                    savedxsd = "";
+                    ValidateFile();
+                }
                 if (e.KeyCode == Keys.Enter)
                 {
                     count = 0;
