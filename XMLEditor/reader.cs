@@ -73,13 +73,19 @@ namespace XMLEditor
             return tags;
         }
 
-        public void Save(String content, String xml, RichTextBox richTextBox)
+        public void Save(String content, String xml, RichTextBox richTextBox,TabControl tabControl)
         {
             try
             {
                 XmlDocument doc = new XmlDocument();
                 doc.LoadXml(content);
                 doc.Save(xml);
+                var selectedTab = tabControl.SelectedTab;
+
+                if (selectedTab.Text.Contains("*"))
+                {
+                    selectedTab.Text = selectedTab.Text.Remove(selectedTab.Text.Length - 1);
+                }
             }
             catch (XmlException e)
             {

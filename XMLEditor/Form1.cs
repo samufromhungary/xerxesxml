@@ -12,6 +12,7 @@ using System.Threading;
 using System.IO;
 using System.Xml;
 using System.Windows.Media;
+using AngleSharp.Text;
 
 namespace XMLEditor
 {
@@ -21,8 +22,6 @@ namespace XMLEditor
         Validator Validator = new Validator();
         Explorer Explorer = new Explorer();
         DateFormat DateFormat = new DateFormat();
-        RichTextBox richTextBox = new RichTextBox();
-        TabPage tabPage = new TabPage("Page");
 
         bool listShow = false;
         string keyword = "<";
@@ -60,8 +59,7 @@ namespace XMLEditor
             }
         }
 
-
-        public void OpenFile()
+        public String OpenFile()
         {
             xmlname = Explorer.SelectedFilePathXml();
             Reset();
@@ -69,12 +67,12 @@ namespace XMLEditor
             foreach (RichTextBox richText in selectedTab.Controls)
             {
                 richText.Text = Reader.Read(xmlname, infoTextBox);
-                selectedTab.Text = Path.GetFileName(xmlname);
+                selectedTab.Text = Path.GetFullPath(xmlname);
                 Reader.Highlight(richText);
             }
             validateToolStripMenuItem.Enabled = true;
             saveToolStripMenuItem.Enabled = true;
-
+            return xmlname;
         }
 
         public void OpenWithoutExplorer(String xml)
@@ -99,13 +97,22 @@ namespace XMLEditor
         {
             ValidateFile();
         }
+        void checkIsSaved()
+        {
+            if(PageIterator().Length != 0)
+            {
+                bool? isSaved = true;
+
+            }
+        }
         void ValidateFile()
         {
             if (PageIterator().Length != 0)
             {
-                bool? isValid = false;
+                bool ? isValid = false;
                 if (savedxsd.Equals(""))
                 {
+
                     xsdname = Explorer.SelectedFilePathXsd();
                     savedxsd = xsdname;
                     isValid = Validator.Validate(xsdname, xmlname);
@@ -144,7 +151,7 @@ namespace XMLEditor
 
         void Reset()
         {
-            tabControlEditor.Text = "";
+            //tabControlEditor.Text = "";
             pictureBoxValid.Visible = false;
             validateToolStripMenuItem.Enabled = false;
             saveToolStripMenuItem.Enabled = false;
@@ -174,7 +181,7 @@ namespace XMLEditor
             }
             else
             {
-                Reader.Save(PageIterator(), xmlname, infoTextBox);
+                Reader.Save(PageIterator(), xmlname, infoTextBox,tabControlEditor);
             }
 
             wassaved = true;
@@ -215,7 +222,7 @@ namespace XMLEditor
                 while (true)
                 {
                     Thread.Sleep(1000);
-                    Reader.Save(PageIterator(), xmlname, infoTextBox);
+                    Reader.Save(PageIterator(), xmlname, infoTextBox, tabControlEditor);
                 }
             }
         }
@@ -227,7 +234,7 @@ namespace XMLEditor
             {
                 if (timer % 10 == 0)
                 {
-                    Reader.Save(PageIterator(), xmlname, infoTextBox);
+                    Reader.Save(PageIterator(), xmlname, infoTextBox, tabControlEditor);
                     MessageBox.Show("Automatically Saved");
                 }
                 if (wassaved)
@@ -256,7 +263,7 @@ namespace XMLEditor
                 var selectedTab = tabControlEditor.SelectedTab;
                 foreach (RichTextBox richText in selectedTab.Controls)
                 {
-                    Reader.Save(PageIterator(), saveFileDialog.FileName, richText);
+                    Reader.Save(PageIterator(), saveFileDialog.FileName, richText, tabControlEditor);
                     return Path.GetFullPath(saveFileDialog.FileName);
                 }
             }return null;
@@ -265,7 +272,22 @@ namespace XMLEditor
         {
             CustomTab ct = new CustomTab();
             ct.textbox.SelectionChanged += RichTextBox_SelectionChanged;
+            ct.textbox.TextChanged += RichTextBox_TextChanged;
+            ct.Text = "Untitled";
             tabControlEditor.TabPages.Add(ct);
+        }
+
+        private void RichTextBox_TextChanged(object sender, EventArgs e)
+        {
+            var selectedTab = tabControlEditor.SelectedTab;
+            if (!selectedTab.Text.Contains("*"))
+            {
+                selectedTab.Text = selectedTab.Text + "*";
+            }
+            else
+            {
+            }
+
         }
 
         private void tabControlEditor_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
@@ -279,7 +301,7 @@ namespace XMLEditor
                 }
                 if (e.Control && e.KeyCode == Keys.S)
                 {
-                    Reader.Save(PageIterator(), xmlname, infoTextBox);
+                    Reader.Save(PageIterator(), xmlname, infoTextBox, tabControlEditor);
                 }
                 if (e.Control && e.KeyCode == Keys.V)
                 {
@@ -360,7 +382,7 @@ namespace XMLEditor
                 string autoText = listBox1.SelectedItem.ToString();
                 int beginPlace = richText.SelectionStart;
                 richText.SelectedText = "";
-                richText.Text = richText.Text.Insert(beginPlace, autoText);
+                richText.Text = richText.Text.Insert(beginPlace, autoText + ">");
                 richText.Focus();
                 listShow = false;
                 listBox1.Hide();
@@ -411,9 +433,37 @@ namespace XMLEditor
             }
         }
 
-        private void tabControlEditor_SelectedIndexChanged(object sender, EventArgs e)
+        void GetCurrentTabName()
         {
+            var selectedTab = tabControlEditor.SelectedTab;
+            if (PageIterator() is null)
+            {
+                MessageBox.Show("anyád");
+            }
+            else
+            {
+                xmlname = Path.GetFullPath(selectedTab.Text);
+            }
+        }
+
+        private void TabControlEditor_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var selectedTab = tabControlEditor.SelectedTab;
+            if (PageIterator() is null)
+            {
+                MessageBox.Show("anyád");
+            }
+            else
+            {
+                xmlname = Path.GetFullPath(selectedTab.Text);
+            }
             statusLabel.Text = String.Empty;
+        }
+
+        private void tabControlEditor_DoubleClick(object sender, EventArgs e)
+        {
+            var selectedTab = tabControlEditor.SelectedTab;
+            tabControlEditor.TabPages.Remove(selectedTab);
         }
     }
 }

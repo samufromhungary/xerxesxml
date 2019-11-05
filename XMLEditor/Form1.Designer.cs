@@ -49,6 +49,7 @@
             this.pictureBoxNormalize = new System.Windows.Forms.PictureBox();
             this.pictureBoxZoom = new System.Windows.Forms.PictureBox();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.button1 = new System.Windows.Forms.Button();
             this.menuStrip.SuspendLayout();
             this.panelBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxValid)).BeginInit();
@@ -165,7 +166,8 @@
             this.tabControlEditor.SelectedIndex = 0;
             this.tabControlEditor.Size = new System.Drawing.Size(1205, 286);
             this.tabControlEditor.TabIndex = 1;
-            this.tabControlEditor.SelectedIndexChanged += new System.EventHandler(this.tabControlEditor_SelectedIndexChanged);
+            this.tabControlEditor.SelectedIndexChanged += new System.EventHandler(this.TabControlEditor_SelectedIndexChanged);
+            this.tabControlEditor.DoubleClick += new System.EventHandler(this.tabControlEditor_DoubleClick);
             this.tabControlEditor.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tabControlEditor_KeyDown);
             this.tabControlEditor.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tabControlEditor_KeyPress);
             // 
@@ -190,6 +192,7 @@
             this.panelBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelBox.Controls.Add(this.button1);
             this.panelBox.Controls.Add(this.listBox1);
             this.panelBox.Controls.Add(this.pictureBoxValid);
             this.panelBox.Controls.Add(this.statusLabel);
@@ -209,8 +212,6 @@
             // 
             this.listBox1.FormattingEnabled = true;
             this.listBox1.ItemHeight = 16;
-            this.listBox1.Items.AddRange(new object[] {
-            "ASD"});
             this.listBox1.Location = new System.Drawing.Point(569, 211);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(121, 116);
@@ -289,6 +290,15 @@
             // 
             this.saveFileDialog.Filter = "XML Format (*.xml)|*.xml";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(525, 14);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 8;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // xmleditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -338,6 +348,7 @@
         private System.Windows.Forms.PictureBox pictureBoxValid;
         private System.Windows.Forms.Label statusLabel;
         private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.Button button1;
     }
 }
 
