@@ -22,6 +22,7 @@ namespace XMLEditor
         Explorer Explorer = new Explorer();
         DateFormat DateFormat = new DateFormat();
         RichTextBox richTextBox = new RichTextBox();
+        FontSaver FontSaver = new FontSaver();
         TabPage tabPage = new TabPage("Page");
 
         bool listShow = false;
@@ -133,6 +134,7 @@ namespace XMLEditor
                     infoTextBox.Text += DateFormat.AppendMessage(msg, Path.GetFileName(xmlname));
                     pictureBoxValid.BackColor = System.Drawing.Color.Red;
                     pictureBoxValid.Visible = true;
+
                 }
                 else
                 {
@@ -415,5 +417,38 @@ namespace XMLEditor
         {
             statusLabel.Text = String.Empty;
         }
+
+        private void FontEditorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FontEditor fontEditor = new FontEditor();
+            fontEditor.ShowDialog();
+            if (FontSaver.GetClicked())
+            {
+                if (FontSaver.GetType() == "EDITOR")
+                {
+                    richTextBox.Font = FontSaver.GetFont();
+                }
+                else if (FontSaver.GetType() == "INFO")
+                {
+                    infoTextBox.Font = FontSaver.GetFont();
+                }else if(FontSaver.GetType() == "BOTH")
+                {
+                    richTextBox.Font = FontSaver.GetFont();
+                    infoTextBox.Font = FontSaver.GetFont();
+                }
+            }
+        }
+
+        public void SetFont(System.Drawing.FontFamily fontFamily, float size)
+        {
+            this.Font = new Font(fontFamily, size);
+        }
+
+        private void PanelBox_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+
     }
 }

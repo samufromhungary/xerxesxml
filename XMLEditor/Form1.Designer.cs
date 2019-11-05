@@ -49,6 +49,7 @@
             this.pictureBoxNormalize = new System.Windows.Forms.PictureBox();
             this.pictureBoxZoom = new System.Windows.Forms.PictureBox();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.fontEditorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.panelBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxValid)).BeginInit();
@@ -133,7 +134,8 @@
             // settingsToolStripMenuItem
             // 
             this.settingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.autoSaveToolStripMenuItem});
+            this.autoSaveToolStripMenuItem,
+            this.fontEditorToolStripMenuItem});
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
             this.settingsToolStripMenuItem.Size = new System.Drawing.Size(71, 23);
             this.settingsToolStripMenuItem.Text = "Settings";
@@ -143,7 +145,7 @@
             this.autoSaveToolStripMenuItem.Enabled = false;
             this.autoSaveToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("autoSaveToolStripMenuItem.Image")));
             this.autoSaveToolStripMenuItem.Name = "autoSaveToolStripMenuItem";
-            this.autoSaveToolStripMenuItem.Size = new System.Drawing.Size(141, 24);
+            this.autoSaveToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
             this.autoSaveToolStripMenuItem.Text = "Auto Save";
             this.autoSaveToolStripMenuItem.Click += new System.EventHandler(this.AutoSaveToolStripMenuItem_Click_1);
             // 
@@ -204,6 +206,7 @@
             this.panelBox.Name = "panelBox";
             this.panelBox.Size = new System.Drawing.Size(1281, 564);
             this.panelBox.TabIndex = 4;
+            this.panelBox.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelBox_Paint);
             // 
             // listBox1
             // 
@@ -289,6 +292,14 @@
             // 
             this.saveFileDialog.Filter = "XML Format (*.xml)|*.xml";
             // 
+            // fontEditorToolStripMenuItem
+            // 
+            this.fontEditorToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("fontEditorToolStripMenuItem.Image")));
+            this.fontEditorToolStripMenuItem.Name = "fontEditorToolStripMenuItem";
+            this.fontEditorToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.fontEditorToolStripMenuItem.Text = "Font Editor";
+            this.fontEditorToolStripMenuItem.Click += new System.EventHandler(this.FontEditorToolStripMenuItem_Click);
+            // 
             // xmleditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -338,6 +349,7 @@
         private System.Windows.Forms.PictureBox pictureBoxValid;
         private System.Windows.Forms.Label statusLabel;
         private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ToolStripMenuItem fontEditorToolStripMenuItem;
     }
 }
 
