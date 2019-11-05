@@ -12,6 +12,8 @@ using System.Threading;
 using System.IO;
 using System.Xml;
 using System.Windows.Media;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace XMLEditor
 {
@@ -68,9 +70,11 @@ namespace XMLEditor
             var selectedTab = tabControlEditor.SelectedTab;
             foreach (RichTextBox richText in selectedTab.Controls)
             {
+                richText.Font = LoadSettings();
                 richText.Text = Reader.Read(xmlname, infoTextBox);
                 selectedTab.Text = Path.GetFileName(xmlname);
                 Reader.Highlight(richText);
+
             }
             validateToolStripMenuItem.Enabled = true;
             saveToolStripMenuItem.Enabled = true;
@@ -431,6 +435,14 @@ namespace XMLEditor
         private void PanelBox_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        public Font LoadSettings()
+        {
+            IFormatter formatter = new BinaryFormatter();
+            Stream stream = new FileStream("settings.txt", FileMode.Open, FileAccess.Read);
+            CustomFont customfont = (CustomFont)formatter.Deserialize(stream);
+            return new Font(customfont.TYPE, customfont.SIZE);
         }
 
 

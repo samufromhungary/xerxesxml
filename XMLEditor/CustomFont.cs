@@ -12,10 +12,10 @@ namespace XMLEditor
     [Serializable]
     public class CustomFont
     {
-        public System.Drawing.FontFamily TYPE;
+        public String TYPE;
         public float SIZE;
 
-        public CustomFont(System.Drawing.FontFamily TYPE,float SIZE)
+        public CustomFont(String TYPE,float SIZE)
         {
             this.TYPE = TYPE;
             this.SIZE = SIZE;

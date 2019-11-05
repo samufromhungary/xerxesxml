@@ -59,9 +59,10 @@ namespace XMLEditor
 
             IFormatter formatter = new BinaryFormatter();
             Stream stream = new FileStream("settings.txt", FileMode.Create, FileAccess.Write);
-            CustomFont customfont = new CustomFont(labelPreview.Font.FontFamily, labelPreview.Font.Size);
+            CustomFont customfont = new CustomFont(labelPreview.Font.FontFamily.ToString(), labelPreview.Font.Size);
             formatter.Serialize(stream, customfont);
             stream.Close();
+            Close();
         }
     }
 }
