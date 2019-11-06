@@ -1,4 +1,6 @@
-﻿namespace XMLEditor
+﻿using System.IO;
+
+namespace XMLEditor
 {
     partial class xmleditor
     {
@@ -38,6 +40,7 @@
             this.validateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.autoSaveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fontEditorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControlEditor = new System.Windows.Forms.TabControl();
             this.infoTextBox = new System.Windows.Forms.RichTextBox();
@@ -49,7 +52,7 @@
             this.pictureBoxNormalize = new System.Windows.Forms.PictureBox();
             this.pictureBoxZoom = new System.Windows.Forms.PictureBox();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
-            this.fontEditorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.autoValidateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.panelBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxValid)).BeginInit();
@@ -135,6 +138,7 @@
             // 
             this.settingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.autoSaveToolStripMenuItem,
+            this.autoValidateToolStripMenuItem,
             this.fontEditorToolStripMenuItem});
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
             this.settingsToolStripMenuItem.Size = new System.Drawing.Size(71, 23);
@@ -148,6 +152,14 @@
             this.autoSaveToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
             this.autoSaveToolStripMenuItem.Text = "Auto Save";
             this.autoSaveToolStripMenuItem.Click += new System.EventHandler(this.AutoSaveToolStripMenuItem_Click_1);
+            // 
+            // fontEditorToolStripMenuItem
+            // 
+            this.fontEditorToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("fontEditorToolStripMenuItem.Image")));
+            this.fontEditorToolStripMenuItem.Name = "fontEditorToolStripMenuItem";
+            this.fontEditorToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.fontEditorToolStripMenuItem.Text = "Font Editor";
+            this.fontEditorToolStripMenuItem.Click += new System.EventHandler(this.FontEditorToolStripMenuItem_Click);
             // 
             // aboutToolStripMenuItem
             // 
@@ -291,13 +303,13 @@
             // 
             this.saveFileDialog.Filter = "XML Format (*.xml)|*.xml";
             // 
-            // fontEditorToolStripMenuItem
+            // autoValidateToolStripMenuItem
             // 
-            this.fontEditorToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("fontEditorToolStripMenuItem.Image")));
-            this.fontEditorToolStripMenuItem.Name = "fontEditorToolStripMenuItem";
-            this.fontEditorToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
-            this.fontEditorToolStripMenuItem.Text = "Font Editor";
-            this.fontEditorToolStripMenuItem.Click += new System.EventHandler(this.FontEditorToolStripMenuItem_Click);
+            this.autoValidateToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("autoValidateToolStripMenuItem.Image")));
+            this.autoValidateToolStripMenuItem.Name = "autoValidateToolStripMenuItem";
+            this.autoValidateToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.autoValidateToolStripMenuItem.Text = "Auto Validate";
+            this.autoValidateToolStripMenuItem.Click += new System.EventHandler(this.AutoValidateToolStripMenuItem_Click);
             // 
             // xmleditor
             // 
@@ -349,6 +361,7 @@
         private System.Windows.Forms.Label statusLabel;
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.ToolStripMenuItem fontEditorToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem autoValidateToolStripMenuItem;
     }
 }
 

@@ -40,6 +40,7 @@ namespace XMLEditor
         System.Windows.Forms.Timer myTimer = new System.Windows.Forms.Timer();
         bool autosave = false;
         bool wassaved = false;
+        bool autovalidate = false;
         public xmleditor()
         {
             InitializeComponent();
@@ -184,6 +185,10 @@ namespace XMLEditor
             {
                 Reader.Save(PageIterator(), xmlname, infoTextBox,tabControlEditor);
                 validateToolStripMenuItem.Enabled = true;
+                if(!savedxsd.Equals("") && autovalidate)
+                {
+                    ValidateFile();
+                }
             }
 
             wassaved = true;
@@ -273,6 +278,7 @@ namespace XMLEditor
         void NewTab()
         {
             CustomTab ct = new CustomTab();
+            ct.textbox.Font = LoadSettings();
             ct.textbox.SelectionChanged += RichTextBox_SelectionChanged;
             ct.textbox.TextChanged += RichTextBox_TextChanged;
             ct.Text = "Untitled";
@@ -492,6 +498,21 @@ namespace XMLEditor
                 Stream stream = new FileStream("settings.txt", FileMode.Open, FileAccess.Read);
                 CustomFont customfont = (CustomFont)formatter.Deserialize(stream);
                 return new Font(customfont.TYPE, customfont.SIZE);
+            }
+
+        }
+
+        private void AutoValidateToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (autovalidate)
+            {
+                autovalidate = false;
+                MessageBox.Show("Validate by save turned off");
+            }
+            else
+            {
+                autovalidate = true;
+                MessageBox.Show("Validate by save turned on");
             }
         }
     }
