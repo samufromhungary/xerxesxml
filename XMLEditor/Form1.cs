@@ -12,6 +12,7 @@ using System.Threading;
 using System.IO;
 using System.Xml;
 using System.Windows.Media;
+using AngleSharp.Text;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 
@@ -23,8 +24,6 @@ namespace XMLEditor
         Validator Validator = new Validator();
         Explorer Explorer = new Explorer();
         DateFormat DateFormat = new DateFormat();
-        RichTextBox richTextBox = new RichTextBox();
-        TabPage tabPage = new TabPage("Page");
 
         bool listShow = false;
         string keyword = "<";
@@ -62,23 +61,23 @@ namespace XMLEditor
             }
         }
 
-
-        public void OpenFile()
+        public String OpenFile()
         {
             xmlname = Explorer.SelectedFilePathXml();
             Reset();
+
             var selectedTab = tabControlEditor.SelectedTab;
             foreach (RichTextBox richText in selectedTab.Controls)
             {
                 richText.Font = LoadSettings();
                 richText.Text = Reader.Read(xmlname, infoTextBox);
-                selectedTab.Text = Path.GetFileName(xmlname);
+                selectedTab.Text = Path.GetFullPath(xmlname);
                 Reader.Highlight(richText);
 
             }
-            validateToolStripMenuItem.Enabled = true;
+            validateToolStripMenuItem.Enabled = false;
             saveToolStripMenuItem.Enabled = true;
-
+            return xmlname;
         }
 
         public void OpenWithoutExplorer(String xml)
@@ -97,6 +96,7 @@ namespace XMLEditor
         private void OpenToolStripMenuItem_Click(object sender, EventArgs e)
         {
             OpenFile();
+            validateToolStripMenuItem.Enabled = false;
         }
 
         private void ValidateToolStripMenuItem_Click(object sender, EventArgs e)
@@ -107,9 +107,10 @@ namespace XMLEditor
         {
             if (PageIterator().Length != 0)
             {
-                bool? isValid = false;
+                bool ? isValid = false;
                 if (savedxsd.Equals(""))
                 {
+
                     xsdname = Explorer.SelectedFilePathXsd();
                     savedxsd = xsdname;
                     isValid = Validator.Validate(xsdname, xmlname);
@@ -149,7 +150,7 @@ namespace XMLEditor
 
         void Reset()
         {
-            tabControlEditor.Text = "";
+            //tabControlEditor.Text = "";
             pictureBoxValid.Visible = false;
             validateToolStripMenuItem.Enabled = false;
             saveToolStripMenuItem.Enabled = false;
@@ -176,10 +177,13 @@ namespace XMLEditor
             if(xmlname == null)
             {
                 OpenWithoutExplorer(NewFile());
+                validateToolStripMenuItem.Enabled = true;
+
             }
             else
             {
-                Reader.Save(PageIterator(), xmlname, infoTextBox);
+                Reader.Save(PageIterator(), xmlname, infoTextBox,tabControlEditor);
+                validateToolStripMenuItem.Enabled = true;
             }
 
             wassaved = true;
@@ -220,7 +224,7 @@ namespace XMLEditor
                 while (true)
                 {
                     Thread.Sleep(1000);
-                    Reader.Save(PageIterator(), xmlname, infoTextBox);
+                    Reader.Save(PageIterator(), xmlname, infoTextBox, tabControlEditor);
                 }
             }
         }
@@ -232,7 +236,7 @@ namespace XMLEditor
             {
                 if (timer % 10 == 0)
                 {
-                    Reader.Save(PageIterator(), xmlname, infoTextBox);
+                    Reader.Save(PageIterator(), xmlname, infoTextBox, tabControlEditor);
                     MessageBox.Show("Automatically Saved");
                 }
                 if (wassaved)
@@ -261,7 +265,7 @@ namespace XMLEditor
                 var selectedTab = tabControlEditor.SelectedTab;
                 foreach (RichTextBox richText in selectedTab.Controls)
                 {
-                    Reader.Save(PageIterator(), saveFileDialog.FileName, richText);
+                    Reader.Save(PageIterator(), saveFileDialog.FileName, richText, tabControlEditor);
                     return Path.GetFullPath(saveFileDialog.FileName);
                 }
             }return null;
@@ -270,7 +274,22 @@ namespace XMLEditor
         {
             CustomTab ct = new CustomTab();
             ct.textbox.SelectionChanged += RichTextBox_SelectionChanged;
+            ct.textbox.TextChanged += RichTextBox_TextChanged;
+            ct.Text = "Untitled";
             tabControlEditor.TabPages.Add(ct);
+        }
+
+        private void RichTextBox_TextChanged(object sender, EventArgs e)
+        {
+            var selectedTab = tabControlEditor.SelectedTab;
+            if (!selectedTab.Text.Contains("*"))
+            {
+                selectedTab.Text = selectedTab.Text + "*";
+            }
+            else
+            {
+            }
+
         }
 
         private void tabControlEditor_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
@@ -281,14 +300,23 @@ namespace XMLEditor
                 if (e.Control && e.KeyCode == Keys.O)
                 {
                     OpenFile();
+                    validateToolStripMenuItem.Enabled = false;
                 }
                 if (e.Control && e.KeyCode == Keys.S)
                 {
-                    Reader.Save(PageIterator(), xmlname, infoTextBox);
+                    Reader.Save(PageIterator(), xmlname, infoTextBox, tabControlEditor);
+                    validateToolStripMenuItem.Enabled = true;
                 }
                 if (e.Control && e.KeyCode == Keys.V)
                 {
-                    ValidateFile();
+                    if(!validateToolStripMenuItem.Enabled == false)
+                    {
+                        ValidateFile();
+                    }
+                    else
+                    {
+                        MessageBox.Show("First,you should save your file!");
+                    }
                 }
                 if (e.Control && e.KeyCode == Keys.B)
                 {
@@ -365,7 +393,7 @@ namespace XMLEditor
                 string autoText = listBox1.SelectedItem.ToString();
                 int beginPlace = richText.SelectionStart;
                 richText.SelectedText = "";
-                richText.Text = richText.Text.Insert(beginPlace, autoText);
+                richText.Text = richText.Text.Insert(beginPlace, autoText + ">");
                 richText.Focus();
                 listShow = false;
                 listBox1.Hide();
@@ -416,11 +444,26 @@ namespace XMLEditor
             }
         }
 
-        private void tabControlEditor_SelectedIndexChanged(object sender, EventArgs e)
+
+        private void TabControlEditor_SelectedIndexChanged(object sender, EventArgs e)
         {
+            var selectedTab = tabControlEditor.SelectedTab;
+            if (PageIterator() is null)
+            {
+                MessageBox.Show("anyád");
+            }
+            else
+            {
+                xmlname = Path.GetFullPath(selectedTab.Text);
+            }
             statusLabel.Text = String.Empty;
         }
 
+        private void tabControlEditor_DoubleClick(object sender, EventArgs e)
+        {
+            var selectedTab = tabControlEditor.SelectedTab;
+            tabControlEditor.TabPages.Remove(selectedTab);
+        }
         private void FontEditorToolStripMenuItem_Click(object sender, EventArgs e)
         {
             FontEditor fontEditor = new FontEditor();
