@@ -482,12 +482,17 @@ namespace XMLEditor
 
         public Font LoadSettings()
         {
-            IFormatter formatter = new BinaryFormatter();
-            Stream stream = new FileStream("settings.txt", FileMode.Open, FileAccess.Read);
-            CustomFont customfont = (CustomFont)formatter.Deserialize(stream);
-            return new Font(customfont.TYPE, customfont.SIZE);
+            if (!File.Exists("settings.txt"))
+            {
+                return new System.Drawing.Font("Microsoft YaHei UI", 8.25F);
+            }
+            else
+            {
+                IFormatter formatter = new BinaryFormatter();
+                Stream stream = new FileStream("settings.txt", FileMode.Open, FileAccess.Read);
+                CustomFont customfont = (CustomFont)formatter.Deserialize(stream);
+                return new Font(customfont.TYPE, customfont.SIZE);
+            }
         }
-
-
     }
 }
