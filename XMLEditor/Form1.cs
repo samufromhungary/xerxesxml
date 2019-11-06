@@ -13,6 +13,8 @@ using System.IO;
 using System.Xml;
 using System.Windows.Media;
 using AngleSharp.Text;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace XMLEditor
 {
@@ -67,9 +69,11 @@ namespace XMLEditor
             var selectedTab = tabControlEditor.SelectedTab;
             foreach (RichTextBox richText in selectedTab.Controls)
             {
+                richText.Font = LoadSettings();
                 richText.Text = Reader.Read(xmlname, infoTextBox);
                 selectedTab.Text = Path.GetFullPath(xmlname);
                 Reader.Highlight(richText);
+
             }
             validateToolStripMenuItem.Enabled = false;
             saveToolStripMenuItem.Enabled = true;
@@ -134,6 +138,7 @@ namespace XMLEditor
                     infoTextBox.Text += DateFormat.AppendMessage(msg, Path.GetFileName(xmlname));
                     pictureBoxValid.BackColor = System.Drawing.Color.Red;
                     pictureBoxValid.Visible = true;
+
                 }
                 else
                 {
@@ -459,5 +464,30 @@ namespace XMLEditor
             var selectedTab = tabControlEditor.SelectedTab;
             tabControlEditor.TabPages.Remove(selectedTab);
         }
+        private void FontEditorToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FontEditor fontEditor = new FontEditor();
+            fontEditor.ShowDialog();
+        }
+
+        public void SetFont(System.Drawing.FontFamily fontFamily, float size)
+        {
+            this.Font = new System.Drawing.Font(fontFamily, size);
+        }
+
+        private void PanelBox_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        public Font LoadSettings()
+        {
+            IFormatter formatter = new BinaryFormatter();
+            Stream stream = new FileStream("settings.txt", FileMode.Open, FileAccess.Read);
+            CustomFont customfont = (CustomFont)formatter.Deserialize(stream);
+            return new Font(customfont.TYPE, customfont.SIZE);
+        }
+
+
     }
 }
