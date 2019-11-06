@@ -15,6 +15,8 @@ namespace XMLEditor
     public class Reader
     {
         string asd;
+        LinkLabel link = new LinkLabel();
+
         public static Color HC_NODE = Color.Firebrick;
         public static Color HC_STRING = Color.Blue;
         public static Color HC_ATTRIBUTE = Color.Red;
@@ -39,6 +41,8 @@ namespace XMLEditor
                     doc.Load(xml);
                     string xmlcontents = doc.InnerXml;
                     content.Add(xmlcontents);
+                    richTextBox.Controls.Add(new LinkLabel());
+
                     return xmlcontents;
                 }
                 else
@@ -73,7 +77,7 @@ namespace XMLEditor
             return tags;
         }
 
-        public void Save(String content, String xml, RichTextBox richTextBox,TabControl tabControl)
+        public void Save(String content, String xml,RichTextBox richTextBox,TabControl tabControl)
         {
             try
             {
@@ -81,6 +85,8 @@ namespace XMLEditor
                 doc.LoadXml(content);
                 doc.Save(xml);
                 var selectedTab = tabControl.SelectedTab;
+                richTextBox.Controls.Add(new LinkLabel());
+
 
                 if (selectedTab.Text.Contains("*"))
                 {

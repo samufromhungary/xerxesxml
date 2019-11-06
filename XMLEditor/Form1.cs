@@ -63,6 +63,7 @@ namespace XMLEditor
         {
             xmlname = Explorer.SelectedFilePathXml();
             Reset();
+
             var selectedTab = tabControlEditor.SelectedTab;
             foreach (RichTextBox richText in selectedTab.Controls)
             {
@@ -70,7 +71,7 @@ namespace XMLEditor
                 selectedTab.Text = Path.GetFullPath(xmlname);
                 Reader.Highlight(richText);
             }
-            validateToolStripMenuItem.Enabled = true;
+            validateToolStripMenuItem.Enabled = false;
             saveToolStripMenuItem.Enabled = true;
             return xmlname;
         }
@@ -91,19 +92,12 @@ namespace XMLEditor
         private void OpenToolStripMenuItem_Click(object sender, EventArgs e)
         {
             OpenFile();
+            validateToolStripMenuItem.Enabled = false;
         }
 
         private void ValidateToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ValidateFile();
-        }
-        void checkIsSaved()
-        {
-            if(PageIterator().Length != 0)
-            {
-                bool? isSaved = true;
-
-            }
         }
         void ValidateFile()
         {
@@ -178,10 +172,13 @@ namespace XMLEditor
             if(xmlname == null)
             {
                 OpenWithoutExplorer(NewFile());
+                validateToolStripMenuItem.Enabled = true;
+
             }
             else
             {
                 Reader.Save(PageIterator(), xmlname, infoTextBox,tabControlEditor);
+                validateToolStripMenuItem.Enabled = true;
             }
 
             wassaved = true;
@@ -298,14 +295,23 @@ namespace XMLEditor
                 if (e.Control && e.KeyCode == Keys.O)
                 {
                     OpenFile();
+                    validateToolStripMenuItem.Enabled = false;
                 }
                 if (e.Control && e.KeyCode == Keys.S)
                 {
                     Reader.Save(PageIterator(), xmlname, infoTextBox, tabControlEditor);
+                    validateToolStripMenuItem.Enabled = true;
                 }
                 if (e.Control && e.KeyCode == Keys.V)
                 {
-                    ValidateFile();
+                    if(!validateToolStripMenuItem.Enabled == false)
+                    {
+                        ValidateFile();
+                    }
+                    else
+                    {
+                        MessageBox.Show("First,you should save your file!");
+                    }
                 }
                 if (e.Control && e.KeyCode == Keys.B)
                 {
@@ -433,18 +439,6 @@ namespace XMLEditor
             }
         }
 
-        void GetCurrentTabName()
-        {
-            var selectedTab = tabControlEditor.SelectedTab;
-            if (PageIterator() is null)
-            {
-                MessageBox.Show("anyád");
-            }
-            else
-            {
-                xmlname = Path.GetFullPath(selectedTab.Text);
-            }
-        }
 
         private void TabControlEditor_SelectedIndexChanged(object sender, EventArgs e)
         {
