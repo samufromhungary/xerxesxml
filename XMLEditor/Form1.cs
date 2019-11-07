@@ -1,18 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Windows.Input;
-using System.Threading;
 using System.IO;
-using System.Xml;
-using System.Windows.Media;
-using AngleSharp.Text;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 
@@ -34,13 +24,13 @@ namespace XMLEditor
         String xsdname;
         String msg;
         String savedxsd = "";
-        float normal = 8.25F;
-        float actual = 8.25F;
-
-        System.Windows.Forms.Timer myTimer = new System.Windows.Forms.Timer();
-        bool autosave = false;
-        bool wassaved = false;
         bool autovalidate = false;
+
+        public Color HC_NODE = Color.Firebrick;
+        public Color HC_STRING = Color.Blue;
+        public Color HC_ATTRIBUTE = Color.Red;
+        public Color HC_COMMENT = Color.GreenYellow;
+        public Color HC_INNERTEXT = Color.Black;
         public xmleditor()
         {
             InitializeComponent();
@@ -96,6 +86,7 @@ namespace XMLEditor
         }
         private void OpenToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            SaveColors();
             OpenFile();
             validateToolStripMenuItem.Enabled = false;
         }
@@ -151,7 +142,6 @@ namespace XMLEditor
 
         void Reset()
         {
-            //tabControlEditor.Text = "";
             pictureBoxValid.Visible = false;
             validateToolStripMenuItem.Enabled = false;
             saveToolStripMenuItem.Enabled = false;
@@ -190,74 +180,11 @@ namespace XMLEditor
                     ValidateFile();
                 }
             }
-
-            wassaved = true;
-        }
-
-
-        private void PictureBoxNormalize_Click(object sender, EventArgs e)
-        {
-            this.Font = new System.Drawing.Font("Microsoft YaHei UI", normal);
-            actual = normal;
-        }
-
-        private void PictureBoxZoom_Click(object sender, EventArgs e)
-        {
-            actual += 0.25F;
-            this.Font = new System.Drawing.Font("Microsoft YaHei UI", actual);
-        }
-
-        private void PictureBoxDezoom_Click(object sender, EventArgs e)
-        {
-            actual -= 0.25F;
-            this.Font = new System.Drawing.Font("Microsoft YaHei UI", actual);
-        }
-
-        private void AutoSaveToolStripMenuItem_Click_1(object sender, EventArgs e)
-        {
-            if (autosave)
-            {
-                autosave = false;
-                autoSaveToolStripMenuItem.Text = "Auto Save (Currently: OFF)";
-                MessageBox.Show("Autosave turned off.");
-            }
-            else
-            {
-                autosave = true;
-                autoSaveToolStripMenuItem.Text = "Auto Save (Currently: ON)";
-                MessageBox.Show("Autosave turned on.");
-                while (true)
-                {
-                    Thread.Sleep(1000);
-                    Reader.Save(PageIterator(), xmlname, infoTextBox, tabControlEditor);
-                }
-            }
-        }
-
-        private void AutoSave()
-        {
-            int timer = 0;
-            while (true)
-            {
-                if (timer % 10 == 0)
-                {
-                    Reader.Save(PageIterator(), xmlname, infoTextBox, tabControlEditor);
-                    MessageBox.Show("Automatically Saved");
-                }
-                if (wassaved)
-                {
-                    timer = 0;
-                    wassaved = false;
-                    MessageBox.Show("Saved while autosave was turned on. Timer reseted.");
-                }
-                timer += 1;
-                Thread.Sleep(1000);
-
-            }
         }
 
         private void NewToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            SaveColors();
             NewTab();
             saveToolStripMenuItem.Enabled = true;
 
@@ -481,11 +408,6 @@ namespace XMLEditor
             this.Font = new System.Drawing.Font(fontFamily, size);
         }
 
-        private void PanelBox_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         public Font LoadSettings()
         {
             if (!File.Exists("settings.txt"))
@@ -514,6 +436,111 @@ namespace XMLEditor
                 autovalidate = true;
                 MessageBox.Show("Validate by save turned on");
             }
+        }
+
+        private void NodeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult colors = colorDialog.ShowDialog();
+
+            if(colors == DialogResult.OK)
+            {
+                HC_NODE = colorDialog.Color;
+                nodeToolStripMenuItem.ForeColor = HC_NODE;
+                SaveColors();
+            }
+        }
+
+        private void StringToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult colors = colorDialog.ShowDialog();
+
+            if (colors == DialogResult.OK)
+            {
+                HC_STRING = colorDialog.Color;
+                stringToolStripMenuItem.ForeColor = HC_STRING;
+                SaveColors();
+            }
+        }
+
+        private void AttributeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult colors = colorDialog.ShowDialog();
+
+            if (colors == DialogResult.OK)
+            {
+                HC_ATTRIBUTE = colorDialog.Color;
+                attributeToolStripMenuItem.ForeColor = HC_ATTRIBUTE;
+                SaveColors();
+            }
+        }
+
+        private void CommentToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult colors = colorDialog.ShowDialog();
+
+            if (colors == DialogResult.OK)
+            {
+                HC_COMMENT = colorDialog.Color;
+                commentToolStripMenuItem.ForeColor = HC_COMMENT;
+                SaveColors();
+            }
+        }
+
+        private void InnertextToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult colors = colorDialog.ShowDialog();
+
+            if (colors == DialogResult.OK)
+            {
+                HC_INNERTEXT = colorDialog.Color;
+                innertextToolStripMenuItem.ForeColor = HC_INNERTEXT;
+                SaveColors();
+
+            }
+        }
+
+        private void ColorPaletteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveColors();
+        }
+
+        private void SaveColors()
+        {
+            IFormatter formatter = new BinaryFormatter();
+            Stream stream = new FileStream("colors.txt", FileMode.Create, FileAccess.Write);
+            CustomColor customcolor = new CustomColor(HC_NODE, HC_STRING, HC_ATTRIBUTE, HC_COMMENT, HC_INNERTEXT);
+            formatter.Serialize(stream, customcolor);
+            stream.Close();
+        }
+
+        private void NodeToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            HC_NODE = nodeToolStripMenuItem1.ForeColor;
+            SaveColors();
+        }
+
+        private void StringToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            HC_STRING = stringToolStripMenuItem1.ForeColor;
+            SaveColors();
+        }
+
+        private void AttributeToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            HC_ATTRIBUTE = attributeToolStripMenuItem1.ForeColor;
+            SaveColors();
+        }
+
+        private void CommentToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            HC_COMMENT = commentToolStripMenuItem1.ForeColor;
+            SaveColors();
+        }
+
+        private void InnertextToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            HC_INNERTEXT = innertextToolStripMenuItem1.ForeColor;
+            SaveColors();
         }
     }
 }
