@@ -14,14 +14,14 @@ namespace XMLEditor
 {
     public class Reader
     {
-        string asd;
-        LinkLabel link = new LinkLabel();
+        public int line { get; set; }
 
         public static Color HC_NODE = Color.Firebrick;
         public static Color HC_STRING = Color.Blue;
         public static Color HC_ATTRIBUTE = Color.Red;
         public static Color HC_COMMENT = Color.GreenYellow;
         public static Color HC_INNERTEXT = Color.Black;
+
 
 
         DateFormat DateFormat = new DateFormat();
@@ -41,7 +41,6 @@ namespace XMLEditor
                     doc.Load(xml);
                     string xmlcontents = doc.InnerXml;
                     content.Add(xmlcontents);
-                    richTextBox.Controls.Add(new LinkLabel());
 
                     return xmlcontents;
                 }
@@ -52,7 +51,7 @@ namespace XMLEditor
 
             } catch (Exception e)
             {
-                return richTextBox.Text += DateFormat.AppendMessage(e.Message, Path.GetFileName(xml));
+                return richTextBox.Text = DateFormat.AppendMessage(e.Message, Path.GetFileName(xml));
             }
 
         }
@@ -84,16 +83,8 @@ namespace XMLEditor
                 XmlDocument doc = new XmlDocument();
                 doc.LoadXml(content);
                 doc.Save(xml);
-                int index = richTextBox.Text.Length;
-                Point pos = richTextBox.GetPositionFromCharIndex(index);
-                link.Text = "LOL";
-                link.AutoSize = false;
-                link.Location = pos;
 
                 var selectedTab = tabControl.SelectedTab;
-                richTextBox.Controls.Add(link);
-
-
 
                 if (selectedTab.Text.Contains("*"))
                 {
@@ -102,7 +93,8 @@ namespace XMLEditor
             }
             catch (XmlException e)
             {
-                richTextBox.Text += DateFormat.AppendMessage(e.Message, Path.GetFileName(xml));
+                line = e.LineNumber;
+                richTextBox.Text = DateFormat.AppendMessage(e.Message, Path.GetFileName(xml));
             }
         }
 

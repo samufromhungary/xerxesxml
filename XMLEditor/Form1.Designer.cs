@@ -53,6 +53,7 @@ namespace XMLEditor
             this.pictureBoxNormalize = new System.Windows.Forms.PictureBox();
             this.pictureBoxZoom = new System.Windows.Forms.PictureBox();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.menuStrip.SuspendLayout();
             this.panelBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxValid)).BeginInit();
@@ -213,6 +214,7 @@ namespace XMLEditor
             this.panelBox.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelBox.Controls.Add(this.linkLabel1);
             this.panelBox.Controls.Add(this.listBox1);
             this.panelBox.Controls.Add(this.pictureBoxValid);
             this.panelBox.Controls.Add(this.statusLabel);
@@ -311,6 +313,17 @@ namespace XMLEditor
             // 
             this.saveFileDialog.Filter = "XML Format (*.xml)|*.xml";
             // 
+            // linkLabel1
+            // 
+            this.linkLabel1.AutoSize = true;
+            this.linkLabel1.Location = new System.Drawing.Point(22, 350);
+            this.linkLabel1.Name = "linkLabel1";
+            this.linkLabel1.Size = new System.Drawing.Size(148, 16);
+            this.linkLabel1.TabIndex = 8;
+            this.linkLabel1.TabStop = true;
+            this.linkLabel1.Text = "Click to Highlight the Error";
+            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            // 
             // xmleditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -363,6 +376,7 @@ namespace XMLEditor
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.ToolStripMenuItem fontEditorToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem autoValidateToolStripMenuItem;
+        public System.Windows.Forms.LinkLabel linkLabel1;
     }
 }
 

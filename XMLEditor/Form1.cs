@@ -37,6 +37,8 @@ namespace XMLEditor
         float normal = 8.25F;
         float actual = 8.25F;
 
+
+
         System.Windows.Forms.Timer myTimer = new System.Windows.Forms.Timer();
         bool autosave = false;
         bool wassaved = false;
@@ -275,7 +277,7 @@ namespace XMLEditor
                 }
             }return null;
         }
-        void NewTab()
+        RichTextBox NewTab()
         {
             CustomTab ct = new CustomTab();
             ct.textbox.Font = LoadSettings();
@@ -283,6 +285,7 @@ namespace XMLEditor
             ct.textbox.TextChanged += RichTextBox_TextChanged;
             ct.Text = "Untitled";
             tabControlEditor.TabPages.Add(ct);
+            return ct.textbox;
         }
 
         private void RichTextBox_TextChanged(object sender, EventArgs e)
@@ -456,11 +459,16 @@ namespace XMLEditor
             var selectedTab = tabControlEditor.SelectedTab;
             if (PageIterator() is null)
             {
-                MessageBox.Show("anyád");
+                MessageBox.Show("Not working");
             }
             else
             {
-                xmlname = Path.GetFullPath(selectedTab.Text);
+                string name = selectedTab.Name;
+                if (name.Contains("*"))
+                {
+                    string starName = name.Substring(0, (name.Length - 1));
+                    xmlname = Path.GetFullPath(starName);
+                }
             }
             statusLabel.Text = String.Empty;
         }
@@ -521,6 +529,22 @@ namespace XMLEditor
             if (MessageBox.Show("Are you sure you want to close?", "Xerxes", MessageBoxButtons.YesNo) == DialogResult.No)
             {
                 e.Cancel = true;
+            }
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            try
+            {
+                CustomTab valami = (CustomTab)tabControlEditor.SelectedTab;
+                valami.textbox.SelectionStart = valami.textbox.Find(valami.textbox.Lines[Reader.line - 1]);
+                valami.textbox.ScrollToCaret();
+                valami.textbox.Focus();
+
+            }
+            catch (Exception x)
+            {
+                MessageBox.Show(x.Message);
             }
         }
     }
