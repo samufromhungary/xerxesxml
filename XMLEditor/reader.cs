@@ -80,8 +80,15 @@ namespace XMLEditor
                 XmlDocument doc = new XmlDocument();
                 doc.LoadXml(content);
                 doc.Save(xml);
+                int index = richTextBox.Text.Length;
+                Point pos = richTextBox.GetPositionFromCharIndex(index);
+                link.Text = "LOL";
+                link.AutoSize = false;
+                link.Location = pos;
+
                 var selectedTab = tabControl.SelectedTab;
-                richTextBox.Controls.Add(new LinkLabel());
+                richTextBox.Controls.Add(link);
+
 
 
                 if (selectedTab.Text.Contains("*"))
