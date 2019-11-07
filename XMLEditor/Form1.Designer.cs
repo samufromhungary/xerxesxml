@@ -40,6 +40,7 @@ namespace XMLEditor
             this.validateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.autoSaveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.autoValidateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fontEditorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControlEditor = new System.Windows.Forms.TabControl();
@@ -52,7 +53,6 @@ namespace XMLEditor
             this.pictureBoxNormalize = new System.Windows.Forms.PictureBox();
             this.pictureBoxZoom = new System.Windows.Forms.PictureBox();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
-            this.autoValidateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.panelBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxValid)).BeginInit();
@@ -96,7 +96,7 @@ namespace XMLEditor
             // 
             this.newToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("newToolStripMenuItem.Image")));
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(132, 24);
             this.newToolStripMenuItem.Text = "New";
             this.newToolStripMenuItem.Click += new System.EventHandler(this.NewToolStripMenuItem_Click);
             // 
@@ -104,7 +104,7 @@ namespace XMLEditor
             // 
             this.openToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("openToolStripMenuItem.Image")));
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(132, 24);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.OpenToolStripMenuItem_Click);
             // 
@@ -113,7 +113,7 @@ namespace XMLEditor
             this.saveToolStripMenuItem.Enabled = false;
             this.saveToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("saveToolStripMenuItem.Image")));
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(132, 24);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.SaveToolStripMenuItem_Click);
             // 
@@ -122,7 +122,7 @@ namespace XMLEditor
             this.saveAsToolStripMenuItem.Enabled = false;
             this.saveAsToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("saveAsToolStripMenuItem.Image")));
             this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
-            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(132, 24);
             this.saveAsToolStripMenuItem.Text = "Save As..";
             // 
             // validateToolStripMenuItem
@@ -130,7 +130,7 @@ namespace XMLEditor
             this.validateToolStripMenuItem.Enabled = false;
             this.validateToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("validateToolStripMenuItem.Image")));
             this.validateToolStripMenuItem.Name = "validateToolStripMenuItem";
-            this.validateToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.validateToolStripMenuItem.Size = new System.Drawing.Size(132, 24);
             this.validateToolStripMenuItem.Text = "Validate";
             this.validateToolStripMenuItem.Click += new System.EventHandler(this.ValidateToolStripMenuItem_Click);
             // 
@@ -149,15 +149,23 @@ namespace XMLEditor
             this.autoSaveToolStripMenuItem.Enabled = false;
             this.autoSaveToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("autoSaveToolStripMenuItem.Image")));
             this.autoSaveToolStripMenuItem.Name = "autoSaveToolStripMenuItem";
-            this.autoSaveToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.autoSaveToolStripMenuItem.Size = new System.Drawing.Size(161, 24);
             this.autoSaveToolStripMenuItem.Text = "Auto Save";
             this.autoSaveToolStripMenuItem.Click += new System.EventHandler(this.AutoSaveToolStripMenuItem_Click_1);
+            // 
+            // autoValidateToolStripMenuItem
+            // 
+            this.autoValidateToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("autoValidateToolStripMenuItem.Image")));
+            this.autoValidateToolStripMenuItem.Name = "autoValidateToolStripMenuItem";
+            this.autoValidateToolStripMenuItem.Size = new System.Drawing.Size(161, 24);
+            this.autoValidateToolStripMenuItem.Text = "Auto Validate";
+            this.autoValidateToolStripMenuItem.Click += new System.EventHandler(this.AutoValidateToolStripMenuItem_Click);
             // 
             // fontEditorToolStripMenuItem
             // 
             this.fontEditorToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("fontEditorToolStripMenuItem.Image")));
             this.fontEditorToolStripMenuItem.Name = "fontEditorToolStripMenuItem";
-            this.fontEditorToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.fontEditorToolStripMenuItem.Size = new System.Drawing.Size(161, 24);
             this.fontEditorToolStripMenuItem.Text = "Font Editor";
             this.fontEditorToolStripMenuItem.Click += new System.EventHandler(this.FontEditorToolStripMenuItem_Click);
             // 
@@ -303,14 +311,6 @@ namespace XMLEditor
             // 
             this.saveFileDialog.Filter = "XML Format (*.xml)|*.xml";
             // 
-            // autoValidateToolStripMenuItem
-            // 
-            this.autoValidateToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("autoValidateToolStripMenuItem.Image")));
-            this.autoValidateToolStripMenuItem.Name = "autoValidateToolStripMenuItem";
-            this.autoValidateToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
-            this.autoValidateToolStripMenuItem.Text = "Auto Validate";
-            this.autoValidateToolStripMenuItem.Click += new System.EventHandler(this.AutoValidateToolStripMenuItem_Click);
-            // 
             // xmleditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
@@ -326,6 +326,7 @@ namespace XMLEditor
             this.Name = "xmleditor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Xerxes";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.xmleditor_FormClosing);
             this.menuStrip.ResumeLayout(false);
             this.menuStrip.PerformLayout();
             this.panelBox.ResumeLayout(false);

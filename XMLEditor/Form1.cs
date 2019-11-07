@@ -515,5 +515,13 @@ namespace XMLEditor
                 MessageBox.Show("Validate by save turned on");
             }
         }
+
+        private void xmleditor_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (MessageBox.Show("Are you sure you want to close?", "Xerxes", MessageBoxButtons.YesNo) == DialogResult.No)
+            {
+                e.Cancel = true;
+            }
+        }
     }
 }
