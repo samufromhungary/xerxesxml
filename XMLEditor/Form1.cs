@@ -460,22 +460,7 @@ namespace XMLEditor
             }
         }
 
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-           try
-            {
-                var selectedTab = tabControlEditor.SelectedTab;
-                CustomTab valami = (CustomTab)selectedTab;
-                valami.textbox.SelectionStart = valami.textbox.Find(valami.textbox.Lines[Reader.line - 1]);
-                valami.textbox.ScrollToCaret();
-                valami.textbox.Focus();
 
-            }
-            catch (Exception x)
-            {
-                MessageBox.Show(x.Message);
-            }
-        }
         private void NodeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DialogResult colors = colorDialog.ShowDialog();
@@ -579,6 +564,23 @@ namespace XMLEditor
         {
             HC_INNERTEXT = innertextToolStripMenuItem1.ForeColor;
             SaveColors();
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            try
+            {
+                var selectedTab = tabControlEditor.SelectedTab;
+                CustomTab valami = (CustomTab)selectedTab;
+                valami.textbox.SelectionStart = valami.textbox.Find(valami.textbox.Lines[Reader.line - 1]);
+                valami.textbox.ScrollToCaret();
+                valami.textbox.Focus();
+
+            }
+            catch (Exception x)
+            {
+                MessageBox.Show(x.Message);
+            }
         }
     }
 }
