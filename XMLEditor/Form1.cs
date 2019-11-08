@@ -463,7 +463,7 @@ namespace XMLEditor
             }
             else
             {
-                string name = selectedTab.Name;
+                string name = selectedTab.Text;
                 if (name.Contains("*"))
                 {
                     string starName = name.Substring(0, (name.Length - 1));
@@ -534,9 +534,10 @@ namespace XMLEditor
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            try
+           try
             {
-                CustomTab valami = (CustomTab)tabControlEditor.SelectedTab;
+                var selectedTab = tabControlEditor.SelectedTab;
+                CustomTab valami = (CustomTab)selectedTab;
                 valami.textbox.SelectionStart = valami.textbox.Find(valami.textbox.Lines[Reader.line - 1]);
                 valami.textbox.ScrollToCaret();
                 valami.textbox.Focus();
