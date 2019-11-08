@@ -27,6 +27,8 @@ namespace XMLEditor
         float normal = 8.25F;
         float actual = 8.25F;
 
+
+
         System.Windows.Forms.Timer myTimer = new System.Windows.Forms.Timer();
         bool autosave = false;
         bool wassaved = false;
@@ -473,6 +475,110 @@ namespace XMLEditor
             {
                 MessageBox.Show(x.Message);
             }
+        }
+        private void NodeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult colors = colorDialog.ShowDialog();
+
+            if(colors == DialogResult.OK)
+            {
+                HC_NODE = colorDialog.Color;
+                nodeToolStripMenuItem.ForeColor = HC_NODE;
+                SaveColors();
+            }
+        }
+
+        private void StringToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult colors = colorDialog.ShowDialog();
+
+            if (colors == DialogResult.OK)
+            {
+                HC_STRING = colorDialog.Color;
+                stringToolStripMenuItem.ForeColor = HC_STRING;
+                SaveColors();
+            }
+        }
+
+        private void AttributeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult colors = colorDialog.ShowDialog();
+
+            if (colors == DialogResult.OK)
+            {
+                HC_ATTRIBUTE = colorDialog.Color;
+                attributeToolStripMenuItem.ForeColor = HC_ATTRIBUTE;
+                SaveColors();
+            }
+        }
+
+        private void CommentToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult colors = colorDialog.ShowDialog();
+
+            if (colors == DialogResult.OK)
+            {
+                HC_COMMENT = colorDialog.Color;
+                commentToolStripMenuItem.ForeColor = HC_COMMENT;
+                SaveColors();
+            }
+        }
+
+        private void InnertextToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult colors = colorDialog.ShowDialog();
+
+            if (colors == DialogResult.OK)
+            {
+                HC_INNERTEXT = colorDialog.Color;
+                innertextToolStripMenuItem.ForeColor = HC_INNERTEXT;
+                SaveColors();
+
+            }
+        }
+
+        private void ColorPaletteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveColors();
+        }
+
+        private void SaveColors()
+        {
+            IFormatter formatter = new BinaryFormatter();
+            Stream stream = new FileStream("colors.txt", FileMode.Create, FileAccess.Write);
+            CustomColor customcolor = new CustomColor(HC_NODE, HC_STRING, HC_ATTRIBUTE, HC_COMMENT, HC_INNERTEXT);
+            formatter.Serialize(stream, customcolor);
+            stream.Close();
+        }
+
+        private void NodeToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            HC_NODE = nodeToolStripMenuItem1.ForeColor;
+            SaveColors();
+        }
+
+        private void StringToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            HC_STRING = stringToolStripMenuItem1.ForeColor;
+            SaveColors();
+        }
+
+        private void AttributeToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            HC_ATTRIBUTE = attributeToolStripMenuItem1.ForeColor;
+            SaveColors();
+        }
+
+        private void CommentToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            HC_COMMENT = commentToolStripMenuItem1.ForeColor;
+            SaveColors();
+        }
+
+        private void InnertextToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            HC_INNERTEXT = innertextToolStripMenuItem1.ForeColor;
+            SaveColors();
         }
     }
 }
