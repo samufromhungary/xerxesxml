@@ -34,6 +34,7 @@
             this.labelPreview = new System.Windows.Forms.Label();
             this.comboBoxFontStyle = new System.Windows.Forms.ComboBox();
             this.comboBoxFontSize = new System.Windows.Forms.ComboBox();
+            this.colorDialog1 = new System.Windows.Forms.ColorDialog();
             this.SuspendLayout();
             // 
             // btnSaveFont
@@ -133,5 +134,6 @@
         private System.Windows.Forms.Label labelPreview;
         private System.Windows.Forms.ComboBox comboBoxFontStyle;
         private System.Windows.Forms.ComboBox comboBoxFontSize;
+        private System.Windows.Forms.ColorDialog colorDialog1;
     }
 }

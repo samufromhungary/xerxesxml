@@ -9,18 +9,14 @@ using System.IO;
 using System.Windows.Forms;
 using System.Xml.Linq;
 using System.Drawing;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace XMLEditor
 {
     public class Reader
     {
         public int line { get; set; }
-
-        public static Color HC_NODE = Color.Firebrick;
-        public static Color HC_STRING = Color.Blue;
-        public static Color HC_ATTRIBUTE = Color.Red;
-        public static Color HC_COMMENT = Color.GreenYellow;
-        public static Color HC_INNERTEXT = Color.Black;
 
 
 
@@ -101,6 +97,7 @@ namespace XMLEditor
 
         public void Highlight(RichTextBox rtb)
         {
+            CustomColor customColor = LoadColors();
             int k = 0;
 
             string str = rtb.Text;
@@ -118,7 +115,7 @@ namespace XMLEditor
                 if (lasten > 0)
                 {
                     rtb.Select(lasten + 1, st - lasten - 1);
-                    rtb.SelectionColor = HC_INNERTEXT;
+                    rtb.SelectionColor = customColor.HC_INNERTEXT;
                 }
 
                 en = str.IndexOf('>', st + 1);
@@ -132,7 +129,7 @@ namespace XMLEditor
                 if (str[st + 1] == '!')
                 {
                     rtb.Select(st + 1, en - st - 1);
-                    rtb.SelectionColor = HC_COMMENT;
+                    rtb.SelectionColor = customColor.HC_COMMENT;
                     continue;
                 }
                 string nodeText = str.Substring(st + 1, en - st - 1);
@@ -156,7 +153,7 @@ namespace XMLEditor
                         if (nodeText[i] == '"')
                         {
                             rtb.Select(lastSt + st + 2, i - lastSt - 1);
-                            rtb.SelectionColor = HC_STRING;
+                            rtb.SelectionColor = customColor.HC_STRING;
                         }
                     }
                     switch (state)
@@ -172,7 +169,7 @@ namespace XMLEditor
                             if (Char.IsWhiteSpace(nodeText, i))
                             {
                                 rtb.Select(startNodeName + st, i - startNodeName + 1);
-                                rtb.SelectionColor = HC_NODE;
+                                rtb.SelectionColor = customColor.HC_NODE;
                                 state = 2;
                             }
                             break;
@@ -188,7 +185,7 @@ namespace XMLEditor
                             if (Char.IsWhiteSpace(nodeText, i) || nodeText[i] == '=')
                             {
                                 rtb.Select(startAtt + st, i - startAtt + 1);
-                                rtb.SelectionColor = HC_ATTRIBUTE;
+                                rtb.SelectionColor = customColor.HC_ATTRIBUTE;
                                 state = 4;
                             }
                             break;
@@ -203,11 +200,18 @@ namespace XMLEditor
                 if (state == 1)
                 {
                     rtb.Select(st + 1, nodeText.Length);
-                    rtb.SelectionColor = HC_NODE;
+                    rtb.SelectionColor = customColor.HC_NODE;
                 }
             }
         }
 
+        public CustomColor LoadColors()
+        {
+            IFormatter formatter = new BinaryFormatter();
+            Stream stream = new FileStream("colors.txt", FileMode.Open, FileAccess.Read);
+            CustomColor customcolor = (CustomColor)formatter.Deserialize(stream);
+            return new CustomColor(customcolor.HC_NODE, customcolor.HC_STRING, customcolor.HC_ATTRIBUTE, customcolor.HC_COMMENT, customcolor.HC_INNERTEXT); ;
 
+        }
     }
 }

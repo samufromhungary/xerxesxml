@@ -57,6 +57,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomColor.cs" />
     <Compile Include="CustomFont.cs" />
     <Compile Include="CustomTab.cs">
       <SubType>Component</SubType>

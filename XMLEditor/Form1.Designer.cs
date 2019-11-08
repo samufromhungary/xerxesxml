@@ -42,6 +42,19 @@ namespace XMLEditor
             this.autoSaveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.autoValidateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fontEditorToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.colorPaletteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.defaultToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.nodeToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.stringToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.attributeToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.commentToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.innertextToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.nodeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.stringToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.attributeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.commentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.innertextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControlEditor = new System.Windows.Forms.TabControl();
             this.infoTextBox = new System.Windows.Forms.RichTextBox();
@@ -53,7 +66,7 @@ namespace XMLEditor
             this.pictureBoxNormalize = new System.Windows.Forms.PictureBox();
             this.pictureBoxZoom = new System.Windows.Forms.PictureBox();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.colorDialog = new System.Windows.Forms.ColorDialog();
             this.menuStrip.SuspendLayout();
             this.panelBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxValid)).BeginInit();
@@ -140,7 +153,8 @@ namespace XMLEditor
             this.settingsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.autoSaveToolStripMenuItem,
             this.autoValidateToolStripMenuItem,
-            this.fontEditorToolStripMenuItem});
+            this.fontEditorToolStripMenuItem,
+            this.colorPaletteToolStripMenuItem});
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
             this.settingsToolStripMenuItem.Size = new System.Drawing.Size(71, 23);
             this.settingsToolStripMenuItem.Text = "Settings";
@@ -152,7 +166,14 @@ namespace XMLEditor
             this.autoSaveToolStripMenuItem.Name = "autoSaveToolStripMenuItem";
             this.autoSaveToolStripMenuItem.Size = new System.Drawing.Size(161, 24);
             this.autoSaveToolStripMenuItem.Text = "Auto Save";
-            this.autoSaveToolStripMenuItem.Click += new System.EventHandler(this.AutoSaveToolStripMenuItem_Click_1);
+            // 
+            // autoValidateToolStripMenuItem
+            // 
+            this.autoValidateToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("autoValidateToolStripMenuItem.Image")));
+            this.autoValidateToolStripMenuItem.Name = "autoValidateToolStripMenuItem";
+            this.autoValidateToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.autoValidateToolStripMenuItem.Text = "Auto Validate";
+            this.autoValidateToolStripMenuItem.Click += new System.EventHandler(this.AutoValidateToolStripMenuItem_Click);
             // 
             // autoValidateToolStripMenuItem
             // 
@@ -169,6 +190,129 @@ namespace XMLEditor
             this.fontEditorToolStripMenuItem.Size = new System.Drawing.Size(161, 24);
             this.fontEditorToolStripMenuItem.Text = "Font Editor";
             this.fontEditorToolStripMenuItem.Click += new System.EventHandler(this.FontEditorToolStripMenuItem_Click);
+            // 
+            // colorPaletteToolStripMenuItem
+            // 
+            this.colorPaletteToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.defaultToolStripMenuItem,
+            this.editToolStripMenuItem});
+            this.colorPaletteToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("colorPaletteToolStripMenuItem.Image")));
+            this.colorPaletteToolStripMenuItem.Name = "colorPaletteToolStripMenuItem";
+            this.colorPaletteToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.colorPaletteToolStripMenuItem.Text = "Color Palette";
+            this.colorPaletteToolStripMenuItem.Click += new System.EventHandler(this.ColorPaletteToolStripMenuItem_Click);
+            // 
+            // defaultToolStripMenuItem
+            // 
+            this.defaultToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.defaultToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.nodeToolStripMenuItem1,
+            this.stringToolStripMenuItem1,
+            this.attributeToolStripMenuItem1,
+            this.commentToolStripMenuItem1,
+            this.innertextToolStripMenuItem1});
+            this.defaultToolStripMenuItem.Name = "defaultToolStripMenuItem";
+            this.defaultToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.defaultToolStripMenuItem.Text = "Default";
+            // 
+            // nodeToolStripMenuItem1
+            // 
+            this.nodeToolStripMenuItem1.BackColor = System.Drawing.SystemColors.Control;
+            this.nodeToolStripMenuItem1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.nodeToolStripMenuItem1.ForeColor = System.Drawing.Color.Firebrick;
+            this.nodeToolStripMenuItem1.Name = "nodeToolStripMenuItem1";
+            this.nodeToolStripMenuItem1.Size = new System.Drawing.Size(180, 24);
+            this.nodeToolStripMenuItem1.Text = "Node";
+            this.nodeToolStripMenuItem1.Click += new System.EventHandler(this.NodeToolStripMenuItem1_Click);
+            // 
+            // stringToolStripMenuItem1
+            // 
+            this.stringToolStripMenuItem1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.stringToolStripMenuItem1.ForeColor = System.Drawing.Color.Blue;
+            this.stringToolStripMenuItem1.Name = "stringToolStripMenuItem1";
+            this.stringToolStripMenuItem1.Size = new System.Drawing.Size(180, 24);
+            this.stringToolStripMenuItem1.Text = "String";
+            this.stringToolStripMenuItem1.Click += new System.EventHandler(this.StringToolStripMenuItem1_Click);
+            // 
+            // attributeToolStripMenuItem1
+            // 
+            this.attributeToolStripMenuItem1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.attributeToolStripMenuItem1.ForeColor = System.Drawing.Color.Red;
+            this.attributeToolStripMenuItem1.Name = "attributeToolStripMenuItem1";
+            this.attributeToolStripMenuItem1.Size = new System.Drawing.Size(180, 24);
+            this.attributeToolStripMenuItem1.Text = "Attribute";
+            this.attributeToolStripMenuItem1.Click += new System.EventHandler(this.AttributeToolStripMenuItem1_Click);
+            // 
+            // commentToolStripMenuItem1
+            // 
+            this.commentToolStripMenuItem1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.commentToolStripMenuItem1.ForeColor = System.Drawing.Color.GreenYellow;
+            this.commentToolStripMenuItem1.Name = "commentToolStripMenuItem1";
+            this.commentToolStripMenuItem1.Size = new System.Drawing.Size(180, 24);
+            this.commentToolStripMenuItem1.Text = "Comment";
+            this.commentToolStripMenuItem1.Click += new System.EventHandler(this.CommentToolStripMenuItem1_Click);
+            // 
+            // innertextToolStripMenuItem1
+            // 
+            this.innertextToolStripMenuItem1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.innertextToolStripMenuItem1.ForeColor = System.Drawing.Color.Black;
+            this.innertextToolStripMenuItem1.Name = "innertextToolStripMenuItem1";
+            this.innertextToolStripMenuItem1.Size = new System.Drawing.Size(180, 24);
+            this.innertextToolStripMenuItem1.Text = "Innertext";
+            this.innertextToolStripMenuItem1.Click += new System.EventHandler(this.InnertextToolStripMenuItem1_Click);
+            // 
+            // editToolStripMenuItem
+            // 
+            this.editToolStripMenuItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.editToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.nodeToolStripMenuItem,
+            this.stringToolStripMenuItem,
+            this.attributeToolStripMenuItem,
+            this.commentToolStripMenuItem,
+            this.innertextToolStripMenuItem});
+            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(180, 24);
+            this.editToolStripMenuItem.Text = "Edit";
+            // 
+            // nodeToolStripMenuItem
+            // 
+            this.nodeToolStripMenuItem.ForeColor = System.Drawing.Color.Firebrick;
+            this.nodeToolStripMenuItem.Name = "nodeToolStripMenuItem";
+            this.nodeToolStripMenuItem.Size = new System.Drawing.Size(139, 24);
+            this.nodeToolStripMenuItem.Text = "Node";
+            this.nodeToolStripMenuItem.Click += new System.EventHandler(this.NodeToolStripMenuItem_Click);
+            // 
+            // stringToolStripMenuItem
+            // 
+            this.stringToolStripMenuItem.ForeColor = System.Drawing.Color.Blue;
+            this.stringToolStripMenuItem.Name = "stringToolStripMenuItem";
+            this.stringToolStripMenuItem.Size = new System.Drawing.Size(139, 24);
+            this.stringToolStripMenuItem.Text = "String";
+            this.stringToolStripMenuItem.Click += new System.EventHandler(this.StringToolStripMenuItem_Click);
+            // 
+            // attributeToolStripMenuItem
+            // 
+            this.attributeToolStripMenuItem.ForeColor = System.Drawing.Color.Red;
+            this.attributeToolStripMenuItem.Name = "attributeToolStripMenuItem";
+            this.attributeToolStripMenuItem.Size = new System.Drawing.Size(139, 24);
+            this.attributeToolStripMenuItem.Text = "Attribute";
+            this.attributeToolStripMenuItem.Click += new System.EventHandler(this.AttributeToolStripMenuItem_Click);
+            // 
+            // commentToolStripMenuItem
+            // 
+            this.commentToolStripMenuItem.ForeColor = System.Drawing.Color.GreenYellow;
+            this.commentToolStripMenuItem.Name = "commentToolStripMenuItem";
+            this.commentToolStripMenuItem.Size = new System.Drawing.Size(139, 24);
+            this.commentToolStripMenuItem.Text = "Comment";
+            this.commentToolStripMenuItem.Click += new System.EventHandler(this.CommentToolStripMenuItem_Click);
+            // 
+            // innertextToolStripMenuItem
+            // 
+            this.innertextToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
+            this.innertextToolStripMenuItem.Name = "innertextToolStripMenuItem";
+            this.innertextToolStripMenuItem.Size = new System.Drawing.Size(139, 24);
+            this.innertextToolStripMenuItem.Text = "Innertext";
+            this.innertextToolStripMenuItem.Click += new System.EventHandler(this.InnertextToolStripMenuItem_Click);
             // 
             // aboutToolStripMenuItem
             // 
@@ -229,7 +373,6 @@ namespace XMLEditor
             this.panelBox.Name = "panelBox";
             this.panelBox.Size = new System.Drawing.Size(1281, 564);
             this.panelBox.TabIndex = 4;
-            this.panelBox.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelBox_Paint);
             // 
             // listBox1
             // 
@@ -279,7 +422,6 @@ namespace XMLEditor
             this.pictureBoxDezoom.Size = new System.Drawing.Size(18, 18);
             this.pictureBoxDezoom.TabIndex = 5;
             this.pictureBoxDezoom.TabStop = false;
-            this.pictureBoxDezoom.Click += new System.EventHandler(this.PictureBoxDezoom_Click);
             // 
             // pictureBoxNormalize
             // 
@@ -293,7 +435,6 @@ namespace XMLEditor
             this.pictureBoxNormalize.Size = new System.Drawing.Size(18, 18);
             this.pictureBoxNormalize.TabIndex = 6;
             this.pictureBoxNormalize.TabStop = false;
-            this.pictureBoxNormalize.Click += new System.EventHandler(this.PictureBoxNormalize_Click);
             // 
             // pictureBoxZoom
             // 
@@ -307,22 +448,14 @@ namespace XMLEditor
             this.pictureBoxZoom.Size = new System.Drawing.Size(18, 18);
             this.pictureBoxZoom.TabIndex = 4;
             this.pictureBoxZoom.TabStop = false;
-            this.pictureBoxZoom.Click += new System.EventHandler(this.PictureBoxZoom_Click);
             // 
             // saveFileDialog
             // 
             this.saveFileDialog.Filter = "XML Format (*.xml)|*.xml";
             // 
-            // linkLabel1
+            // colorDialog
             // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(22, 350);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(148, 16);
-            this.linkLabel1.TabIndex = 8;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "Click to Highlight the Error";
-            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            this.colorDialog.AnyColor = true;
             // 
             // xmleditor
             // 
@@ -376,7 +509,20 @@ namespace XMLEditor
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.ToolStripMenuItem fontEditorToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem autoValidateToolStripMenuItem;
-        public System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.ToolStripMenuItem colorPaletteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem defaultToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem nodeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem stringToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem attributeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem commentToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem innertextToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem nodeToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem stringToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem attributeToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem commentToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem innertextToolStripMenuItem1;
+        private System.Windows.Forms.ColorDialog colorDialog;
     }
 }
 
